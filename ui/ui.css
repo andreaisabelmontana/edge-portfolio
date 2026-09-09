@@ -34,11 +34,25 @@ body.edge-ready .transition-btn {
   display: none !important;
 }
 
-/* she had it at 122px, which reads as a slab across the top */
+/* she had it at 122px, which reads as a slab across the top.
+
+   fixed rather than her sticky: our shell is injected ahead of her nav in the
+   document, so a sticky bar starts wherever it falls in that flow (measured at
+   y=932) and can only stick downward from there, which is why it appeared at
+   the bottom of the screen. fixed takes it out of flow so document order stops
+   mattering, and .edge-ui pads by the same 76px to make room for it. */
 body.edge-ready .nav {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
   height: 76px !important;
   min-height: 0 !important;
+  z-index: 40 !important;
 }
+
+body.edge-ready .edge-ui { padding-top: 76px; }
 
 body.edge-ready .nav-inner {
   height: 76px !important;
