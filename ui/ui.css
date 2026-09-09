@@ -14,7 +14,7 @@ body.edge-ready {
 /* her page, minus the parts we are replacing. the nav and the transition layer
    stay in the dom because the bundle reads them; they are only taken out of
    view. */
-body.edge-ready .nav,
+body.edge-ready .nav:not(.edge-nav),
 body.edge-ready .transition-w,
 body.edge-ready .s:not(.home-hero):not(.is-footer),
 body.edge-ready .home-title-w {
@@ -25,6 +25,20 @@ body.edge-ready .home-title-w {
    from the template. the rive canvases inside it have already loaded by now. */
 body.edge-ready .am-hero-name,
 body.edge-ready .home-hero-next-race-w {
+  display: none !important;
+}
+
+/* the top bar carries three things and nothing else: the astronaut, the
+   languages and the menu. these are her template's own nav furniture, which
+   sits at the same height and shows through as stray blocks beside the menu. */
+body.edge-ready .transition-btn,
+body.edge-ready .btn-layout.is-nav,
+body.edge-ready .nav-rive-w,
+body.edge-ready .nav-helmet-rive-w,
+body.edge-ready .nav-menu-w,
+body.edge-ready .nav-menu-bg,
+body.edge-ready .nav-brand-link,
+body.edge-ready .nav-middle {
   display: none !important;
 }
 
@@ -138,11 +152,37 @@ body.edge-ready .home .hero {
 }
 
 @media (min-width: 1024px) {
+  /* the copy sits near the left edge and high, rather than centred in an
+     78rem container that pushed it into the middle of the screen and left a
+     dead margin down the left. */
+  body.edge-ready .home .hero {
+    align-items: flex-start;
+    padding-top: 9vh;
+  }
+  body.edge-ready .home .hero .container {
+    max-width: none;
+    padding-left: clamp(3rem, 9vw, 10rem);
+    padding-right: clamp(2rem, 5vw, 4rem);
+  }
+}
+
+@media (min-width: 1024px) {
   /* her head runs from roughly 17% to 74% of the viewport width and cannot be
      moved, so the copy is held clear of it and the type comes down to fit. */
   body.edge-ready .hero-copy {
-    max-width: 34rem;
+    max-width: 38rem;
   }
+  /* the supporting copy was set too small against a name this large */
+  body.edge-ready .hero-copy .lead {
+    font-size: clamp(1.15rem, 1.55vw, 1.5rem);
+    max-width: 30ch;
+  }
+  body.edge-ready .hero-copy .facts {
+    font-size: 0.97rem;
+    max-width: 46ch;
+  }
+  body.edge-ready .hero-copy .status { font-size: 0.95rem; }
+  body.edge-ready .hero-copy .arrow-link { font-size: 1.02rem; }
   body.edge-ready .hero-slot {
     width: clamp(18rem, 34vw, 28rem);
     aspect-ratio: 1;
