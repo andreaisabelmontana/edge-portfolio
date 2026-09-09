@@ -69,16 +69,6 @@
 .lang button:hover { color: var(--ink); }
 .lang button.is-on { color: var(--edge); font-weight: 600; }
 
-.nav-cv {
-  font-size: 0.82rem;
-  border: 1px solid var(--line-strong);
-  border-radius: 999px;
-  padding: 0.35rem 0.9rem;
-  transition: border-color 0.3s var(--ease-out), color 0.3s var(--ease-out);
-}
-
-.nav-cv:hover { border-color: var(--edge); color: var(--edge); }
-
 .nav-menu {
   display: inline-flex;
   align-items: center;
@@ -344,12 +334,6 @@
   }
   .hero-slot { align-self: auto; }
   .panels { grid-template-columns: repeat(2, 1fr); }
-}
-
-/* phones: the cv pill is reachable from the menu, so drop it from the bar and
-   leave the astronaut, the languages and the menu button room to breathe. */
-@media (max-width: 479px) {
-  .nav-cv { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {

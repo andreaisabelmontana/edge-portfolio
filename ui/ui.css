@@ -30,35 +30,69 @@ body.edge-ready .home-hero-next-race-w {
 
 body.edge-ready .edge-ui { display: block; }
 
-/* the hero, once moved, has to stop being a viewport.
+/* her hero becomes a fixed, full-viewport backdrop.
 
-   her chain is sticky-track > sticky-item > section.s > .c > .gl-canvas, and
-   several of those are sized in vw/vh with their own !important rules, so
-   setting the outer one is not enough: the mount kept a 903x803 box while the
-   slot was 314 square. pinning every link in the chain to the slot is what
-   makes the renderer's bounds rectangle equal the slot, and the head then
-   draws exactly there. */
-body.edge-ready .hero-slot > *,
-body.edge-ready .hero-slot .sticky-item,
-body.edge-ready .hero-slot .s,
-body.edge-ready .hero-slot .c,
-body.edge-ready .hero-slot .gl-canvas {
+   the mount rect is what the scene takes its framing from, and only its HEIGHT
+   matters: give it less than the full viewport height and her crown and chin
+   fall outside the frame, which is what kept cutting her face off. horizontal
+   placement is not controllable at all, the head draws centred in the canvas
+   whatever the mount's x is. so the mount is restored to the full viewport and
+   the copy is laid out around where she lands. */
+body.edge-ready .sticky-track.home-hero {
+  position: fixed !important;
+  left: 0 !important;
+  top: 0 !important;
+  width: 100% !important;
+  height: 100vh !important;
+  margin: 0 !important;
+  z-index: -1 !important;
+}
+
+body.edge-ready .sticky-track.home-hero .sticky-item,
+body.edge-ready .sticky-track.home-hero .s,
+body.edge-ready .sticky-track.home-hero .c,
+body.edge-ready .sticky-track.home-hero .gl-canvas {
   position: absolute !important;
   inset: 0 !important;
   width: 100% !important;
   height: 100% !important;
-  min-width: 0 !important;
   min-height: 0 !important;
   max-width: none !important;
-  max-height: none !important;
   padding: 0 !important;
   margin: 0 !important;
   transform: none !important;
 }
 
-/* the clip layer wraps .gl-wrap and is deliberately left untransformed, so its
-   coordinate space is screen space and ui.js can write the clip straight from
-   the slot's bounding rect. */
+/* she is centred and bright, so the copy needs its own ground to stay legible */
+body.edge-ready .home .hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(to right,
+    rgba(5,5,5,0.94) 0%, rgba(5,5,5,0.88) 24%, rgba(5,5,5,0.4) 42%, transparent 60%);
+}
+
+body.edge-ready .home .hero { position: relative; }
+body.edge-ready .hero-inner { position: relative; z-index: 1; }
+
+/* her hero is NOT resized or re-parented.
+
+   it was, for a while: the chain was pinned to the panel so the mount rect
+   equalled the panel. that is what kept cutting her face off. the scene takes
+   its framing from that rect while still drawing into the full-screen canvas,
+   so squeezing the mount into a small square gave the head a square projection
+   painted across a wide canvas, and the crown and chin fell outside the
+   viewport.
+
+   so the hero keeps its own full-viewport geometry and stays where her page put
+   it, as the backdrop. it renders exactly as it does on the live site, whole
+   and with the cursor true. our copy takes the left column and the panel below
+   just reserves the space it must not run into. */
+
+/* the clip layer stays untransformed, so its coordinate space is screen space
+   and the clip is written straight from the panel's rect. */
 .gl-clip {
   position: fixed;
   inset: 0;
@@ -69,7 +103,6 @@ body.edge-ready .hero-slot .gl-canvas {
 .gl-clip .gl-wrap {
   position: absolute !important;
   inset: 0 !important;
-  transform-origin: center center;
 }
 
 /* her footer is kept: it already carries the contact link and the socials */
@@ -86,14 +119,32 @@ body.edge-ready .s.is-footer {
   z-index: 5;
 }
 
+/* the head is the full-bleed backdrop, so the slot paints nothing. it only
+   reserves the right-hand column so the copy and her face do not collide. */
 .hero-slot {
   position: relative;
-  width: clamp(17rem, 42vw, 30rem);
+  width: clamp(17rem, 46vw, 36rem);
   aspect-ratio: 1;
   flex: none;
   align-self: center;
-  overflow: hidden;
-  border-radius: 1rem;
+  pointer-events: none;
 }
 
-.hero-slot canvas { display: block; }
+/* the hero needs enough height for her head to sit in behind it */
+body.edge-ready .home .hero {
+  min-height: 86vh;
+  display: flex;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  /* her head runs from roughly 17% to 74% of the viewport width and cannot be
+     moved, so the copy is held clear of it and the type comes down to fit. */
+  body.edge-ready .hero-copy {
+    max-width: 34rem;
+  }
+  body.edge-ready .hero-slot {
+    width: clamp(18rem, 34vw, 28rem);
+    aspect-ratio: 1;
+  }
+}

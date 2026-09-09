@@ -12,7 +12,6 @@
 
   const DICT = {
     es: {
-      'nav.cv': 'CV',
       'nav.menu': 'menú',
       'nav.close': 'cerrar',
       'hero.eyebrow': 'CS e IA, IE University · Madrid, España',
@@ -31,7 +30,6 @@
       'cta.view': 'Ver',
     },
     de: {
-      'nav.cv': 'Lebenslauf',
       'nav.menu': 'Menü',
       'nav.close': 'schließen',
       'hero.eyebrow': 'CS & KI, IE University · Madrid, Spanien',

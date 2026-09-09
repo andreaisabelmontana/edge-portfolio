@@ -26,33 +26,38 @@
       !document.getElementById('am-loader');
   }
 
-  /* the head cannot be moved by moving markup.
+  /* the head, whole, framed into the panel on the right.
 
-     [data-gl="head"] is only a bounds rectangle, and the head scene ignores it:
-     it draws into the shared .gl-wrap, which is position:fixed, z-index:-1 and
-     the full size of the viewport. that is why the face sat behind the copy
-     rather than beside it.
+     two facts drive this, both found the hard way:
 
-     so the canvas is framed instead. a fixed, untransformed clip layer is
-     inserted around .gl-wrap, which means its own coordinate space is screen
-     space and the clip can be written straight from the slot's rect. the wrap
-     inside it is then translated and scaled so the head lands in the middle of
-     that clip. */
-  /* where her head sits inside the untransformed full-viewport render, as
-     fractions of the viewport. she is composed high in frame with the shoulders
-     running off the bottom, so the visual centre is well above the middle and
-     matching centre to centre crops her chin. measured against the live render. */
-  const HEAD_CY = 0.46;   // vertical centre of the head
-  const HEAD_H = 0.78;    // head height, hair to chin
-  const HEAD_FIT = 0.96;  // how much of the slot that height should fill
+     1. the scene takes its framing from the [data-gl="head"] mount rect, and
+        only the HEIGHT matters. give it less than the full viewport height and
+        her crown and chin fall outside the frame. that is what kept cutting her
+        face off, so ui.css restores the mount to the full viewport and the head
+        renders whole and centred, exactly as on the live site.
+
+     2. horizontal placement is not controllable from the mount at all, so the
+        only way to move her right is a css transform on .gl-wrap.
+
+     the cost of (2) is the cursor: the scene reads mousemove, touchmove and
+     pointermove straight from viewport coordinates and normalises against
+     innerWidth, so it does not know about the transform and the helmet lens
+     tracks a point offset from the mouse. set FRAME to false to trade the panel
+     back for a true cursor. */
+  const FRAME = true;
+
+  /* where her head should sit, as fractions of the viewport, and how big.
+     tune these three and nothing else. */
+  const HEAD_X = 0.70;  // horizontal centre
+  const HEAD_Y = 0.54;  // vertical centre
+  const HEAD_K = 0.68;  // scale
 
   let clip = null;
   let wrap = null;
 
   function frameHead() {
     wrap = document.querySelector('.gl-wrap');
-    if (!wrap) return;
-
+    if (!wrap || !FRAME) return;
     if (!clip) {
       clip = document.createElement('div');
       clip.className = 'gl-clip';
@@ -65,34 +70,34 @@
   function fit() {
     if (!clip || !wrap) return;
     const s = slot.getBoundingClientRect();
-    if (!s.width) return;
-
     const vw = window.innerWidth;
     const vh = window.innerHeight;
 
-    /* transform-origin is pinned to the top left so the mapping is a plain
-       affine one: a local point p lands at t + k*p. that makes it possible to
-       solve for t directly from where the head should end up, instead of
-       guessing offsets against a centre that was never the head's centre. */
-    const k = (s.height * HEAD_FIT) / (HEAD_H * vh);
-    const tx = s.left + s.width / 2 - k * (vw / 2);
-    const ty = s.top + s.height / 2 - k * (HEAD_CY * vh);
+    // single column: she goes back to being the full backdrop
+    if (vw < 1024 || !s.width) {
+      clip.style.clipPath = 'none';
+      wrap.style.transform = 'none';
+      return;
+    }
+
+    /* no hard clip: the gradient in ui.css does the blending, so she fades into
+       the ground instead of ending on a cut edge. origin 0 0 keeps the mapping
+       plainly affine, so a local point p lands at t + k*p and the translation
+       can be solved from where her centre should end up. */
+    const k = HEAD_K;
+    const tx = HEAD_X * vw - k * (vw / 2);
+    const ty = HEAD_Y * vh - k * (vh / 2);
 
     wrap.style.transformOrigin = '0 0';
     wrap.style.transform = `translate(${tx}px, ${ty}px) scale(${k})`;
-    clip.style.clipPath =
-      `inset(${s.top}px ${vw - s.right}px ${vh - s.bottom}px ${s.left}px round 16px)`;
+    clip.style.clipPath = 'none';
   }
 
   function restructure() {
-    slot.appendChild(hero);
     document.body.classList.add('edge-ready');
     frameHead();
-
     window.dispatchEvent(new Event('resize'));
     setTimeout(fit, 400);
-
-    // the wrap is fixed while the slot scrolls, so the frame has to follow
     addEventListener('scroll', fit, { passive: true });
     addEventListener('resize', fit);
   }
