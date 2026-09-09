@@ -55,7 +55,126 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
 <style>  
   .w-webflow-badge { display: none !important; }
   .transition-w {	display: flex; }
-</style><link href="./custom/custom.css?v=20260909a" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet"/><link rel="preload" href="gl/fonts/Brier-Bold-02.webp" as="image"/><link rel="preload" href="gl/fonts/MonaSans-Bold-02.webp" as="image"/><link rel="preload" href="gl/fonts/Brier-Bold-msdf.json" as="fetch" crossorigin="anonymous"/><link rel="preload" href="gl/fonts/MonaSans-Bold-msdf.json" as="fetch" crossorigin="anonymous"/><link rel="preload" href="gl/textures/head/webp/diffuse.webp" as="image"/><link rel="preload" href="gl/textures/head/webp/depth.webp" as="image"/><link rel="preload" href="gl/textures/helmet/webp/gold/Norris_Helmet_mat_BaseColor.webp" as="image"/><link rel="preload" href="gl/hdri/studio_small_08_1k--dark.hdr" as="fetch" crossorigin="anonymous"/></head><body data-edit=""><div id="am-loader" style="position:fixed;inset:0;z-index:99999;background:#08070f;display:flex;align-items:center;justify-content:center;transition:opacity .8s ease"><video src="./custom/loading.mp4" autoplay muted playsinline style="width:min(46vw,360px);max-width:80%;border-radius:14px"></video></div><script>(function(){var m=document.getElementById("am-loader");var v=m.querySelector("video");var ended=false,loaded=false;function maybe(){if(ended&&loaded){m.style.opacity="0";setTimeout(function(){if(m.parentNode)m.parentNode.removeChild(m)},900)}}v.addEventListener("ended",function(){ended=true;maybe()});if(document.readyState==="complete"){loaded=true}else window.addEventListener("load",function(){setTimeout(function(){loaded=true;maybe()},3000)});setTimeout(function(){ended=true;loaded=true;maybe()},15000);})();</script><div class="css-main"><div class="css-root w-embed"><style>
+</style><link href="./custom/custom.css?v=20260909a" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet"/><link rel="preload" href="gl/fonts/Brier-Bold-02.webp" as="image"/><link rel="preload" href="gl/fonts/MonaSans-Bold-02.webp" as="image"/><link rel="preload" href="gl/fonts/Brier-Bold-msdf.json" as="fetch" crossorigin="anonymous"/><link rel="preload" href="gl/fonts/MonaSans-Bold-msdf.json" as="fetch" crossorigin="anonymous"/><link rel="preload" href="gl/textures/head/webp/diffuse.webp" as="image"/><link rel="preload" href="gl/textures/head/webp/depth.webp" as="image"/><link rel="preload" href="gl/textures/helmet/webp/gold/Norris_Helmet_mat_BaseColor.webp" as="image"/><link rel="preload" href="gl/hdri/studio_small_08_1k--dark.hdr" as="fetch" crossorigin="anonymous"/><link rel="stylesheet" href="ui/tokens.css?v=20260909b"/><link rel="stylesheet" href="ui/base.css?v=20260909b"/><link rel="stylesheet" href="ui/layout.css?v=20260909b"/><link rel="stylesheet" href="ui/ui.css?v=20260909b"/></head><body data-edit=""><div id="am-loader" style="position:fixed;inset:0;z-index:99999;background:#08070f;display:flex;align-items:center;justify-content:center;transition:opacity .8s ease"><video src="./custom/loading.mp4" autoplay muted playsinline style="width:min(46vw,360px);max-width:80%;border-radius:14px"></video></div><script>(function(){var m=document.getElementById("am-loader");var v=m.querySelector("video");var ended=false,loaded=false;function maybe(){if(ended&&loaded){m.style.opacity="0";setTimeout(function(){if(m.parentNode)m.parentNode.removeChild(m)},900)}}v.addEventListener("ended",function(){ended=true;maybe()});if(document.readyState==="complete"){loaded=true}else window.addEventListener("load",function(){setTimeout(function(){loaded=true;maybe()},3000)});setTimeout(function(){ended=true;loaded=true;maybe()},15000);})();</script><div class="edge-ui">
+
+  <header class="nav edge-nav">
+    <div class="container nav-inner">
+
+      <a class="nav-brand" href="./" aria-label="Andrea Montaña, home">
+        <img src="ui/assets/astronaut.png" alt="" width="34" height="34">
+      </a>
+
+      <div class="nav-right">
+        <div class="lang" role="group" aria-label="Language">
+          <button type="button" data-lang="en" aria-pressed="true">en</button>
+          <span aria-hidden="true">/</span>
+          <button type="button" data-lang="es" aria-pressed="false">es</button>
+          <span aria-hidden="true">/</span>
+          <button type="button" data-lang="de" aria-pressed="false">de</button>
+        </div>
+
+        <a class="nav-cv" data-taxi-ignore href="./cv" data-i18n="nav.cv">CV</a>
+
+        <button class="nav-menu" type="button" data-menu-button aria-expanded="false" aria-controls="edge-menu">
+          <span class="nav-menu-bars" aria-hidden="true"><i></i><i></i></span>
+          <span data-i18n="nav.menu">menu</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <div class="menu-panel" id="edge-menu" data-menu-panel hidden>
+    <nav class="menu-inner" aria-label="Sections">
+      <a data-taxi-ignore href="./online"><span class="menu-index">01</span> <span data-i18n="panel.projects.title">Projects</span></a>
+      <a data-taxi-ignore href="./experience"><span class="menu-index">02</span> <span data-i18n="panel.experience.title">Experience</span></a>
+      <a data-taxi-ignore href="./off-track"><span class="menu-index">03</span> <span data-i18n="panel.offline.title">Offline</span></a>
+      <a data-taxi-ignore href="./about"><span class="menu-index">04</span> <span data-i18n="panel.about.title">About</span></a>
+      <a data-taxi-ignore href="./cv"><span class="menu-index">05</span> <span data-i18n="nav.cv">CV</span></a>
+    </nav>
+    <div class="menu-social">
+      <a href="https://github.com/andreaisabelmontana" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/andrea-isabel-montana" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.instagram.com/artedelamontana/" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </div>
+
+  <main class="home">
+
+    <section class="hero">
+      <div class="container hero-inner">
+
+        <div class="hero-copy">
+          <p class="eyebrow" data-reveal="0" data-i18n="hero.eyebrow">CS &amp; AI, IE University &middot; Madrid, Spain</p>
+
+          <h1 class="display" data-reveal="60">Andrea Montaña</h1>
+
+          <p class="lead" data-reveal="120" data-i18n="hero.lead">
+            I design at the edge where digital intelligence meets the physical world.
+          </p>
+
+          <p class="facts" data-reveal="120" data-i18n="hero.facts">
+            CS &amp; AI @ IE University &middot; previously Trinity College Dublin &middot;
+            student-athlete &middot; interactive 3D, computer vision and the web
+          </p>
+
+          <p class="status" data-reveal="180">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span data-i18n="hero.status">Open to fall 2026 internships and summer 2027</span>
+          </p>
+
+          <div class="hero-links" data-reveal="240">
+            <a class="arrow-link" data-taxi-ignore href="./online"><span data-i18n="hero.work">See the work</span> <span aria-hidden="true">&rarr;</span></a>
+            <a class="arrow-link" data-taxi-ignore href="./cv"><span data-i18n="nav.cv">CV</span> <span aria-hidden="true">&rarr;</span></a>
+            <a class="arrow-link" href="https://github.com/andreaisabelmontana" target="_blank" rel="noopener">GitHub <span aria-hidden="true">&#8599;</span></a>
+            <a class="arrow-link" href="https://www.linkedin.com/in/andrea-isabel-montana" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">&#8599;</span></a>
+          </div>
+        </div>
+
+        <!-- her live head scene is moved in here by ui.js once it has mounted -->
+        <div class="hero-slot" data-hero-slot data-reveal="100"></div>
+
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <div class="container panels-wrap">
+      <div class="panels">
+
+        <a class="panel" data-taxi-ignore href="./online" data-reveal="0">
+          <img class="panel-bg" src="ui/assets/panels/offline.webp" alt="" loading="lazy">
+          <div class="panel-scrim" aria-hidden="true"></div>
+          <div class="panel-text">
+            <h2 class="panel-title" data-i18n="panel.projects.title">Projects</h2>
+            <p class="panel-desc" data-i18n="panel.projects.desc">Interactive 3D, maps and storefronts.</p>
+          </div>
+          <span class="panel-cta" aria-hidden="true">
+            <span data-i18n="cta.view">View</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </a>
+
+        <a class="panel" data-taxi-ignore href="./about" data-reveal="90">
+          <img class="panel-bg" src="ui/assets/panels/about.webp" alt="" loading="lazy">
+          <div class="panel-scrim" aria-hidden="true"></div>
+          <div class="panel-text">
+            <h2 class="panel-title" data-i18n="panel.about.title">About</h2>
+            <p class="panel-desc" data-i18n="panel.about.desc">Bogota to Dublin to Madrid.</p>
+          </div>
+          <span class="panel-cta" aria-hidden="true">
+            <span data-i18n="cta.view">View</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </a>
+
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<div class="css-main"><div class="css-root w-embed"><style>
 
   :root {
     /* Other variables */
@@ -1297,4 +1416,4 @@ stroke="currentColor"/>
 
 
 </script>
-<div class="stars-overlay"></div><script id="helmet-keep-four">window.addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".helmet-grid-item").forEach(function(it,i){if(i>=4){var w=it.closest(".helmet-grid-item-w")||it;w.style.display="none";}});});</script><script defer src="./custom/vendor/three.min.js"></script><script defer src="./custom/experience.js?v=20260811l"></script></body></html>
+<div class="stars-overlay"></div><script id="helmet-keep-four">window.addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".helmet-grid-item").forEach(function(it,i){if(i>=4){var w=it.closest(".helmet-grid-item-w")||it;w.style.display="none";}});});</script><script defer src="./custom/vendor/three.min.js"></script><script defer src="./custom/experience.js?v=20260811l"></script><script src="ui/reveal.js?v=20260909b" defer></script><script src="ui/menu.js?v=20260909b" defer></script><script src="ui/i18n.js?v=20260909b" defer></script><script src="ui/ui.js?v=20260909b" defer></script></body></html>

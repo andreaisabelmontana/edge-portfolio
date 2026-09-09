@@ -1,0 +1,99 @@
+/* our layout, wrapped around her live hero.
+
+   everything here is inert until ui.js adds .edge-ready to the body, which it
+   only does once the head scene has actually mounted. before that the page is
+   hers and behaves exactly as it always has, which is what lets the bundle
+   boot. */
+
+.edge-ui { display: none; }
+
+body.edge-ready {
+  overflow-x: hidden;
+}
+
+/* her page, minus the parts we are replacing. the nav and the transition layer
+   stay in the dom because the bundle reads them; they are only taken out of
+   view. */
+body.edge-ready .nav,
+body.edge-ready .transition-w,
+body.edge-ready .s:not(.home-hero):not(.is-footer),
+body.edge-ready .home-title-w {
+  display: none !important;
+}
+
+/* the hero's own furniture: her big wordmark and the leftover Next Race panel
+   from the template. the rive canvases inside it have already loaded by now. */
+body.edge-ready .am-hero-name,
+body.edge-ready .home-hero-next-race-w {
+  display: none !important;
+}
+
+body.edge-ready .edge-ui { display: block; }
+
+/* the hero, once moved, has to stop being a viewport.
+
+   her chain is sticky-track > sticky-item > section.s > .c > .gl-canvas, and
+   several of those are sized in vw/vh with their own !important rules, so
+   setting the outer one is not enough: the mount kept a 903x803 box while the
+   slot was 314 square. pinning every link in the chain to the slot is what
+   makes the renderer's bounds rectangle equal the slot, and the head then
+   draws exactly there. */
+body.edge-ready .hero-slot > *,
+body.edge-ready .hero-slot .sticky-item,
+body.edge-ready .hero-slot .s,
+body.edge-ready .hero-slot .c,
+body.edge-ready .hero-slot .gl-canvas {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  max-width: none !important;
+  max-height: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  transform: none !important;
+}
+
+/* the clip layer wraps .gl-wrap and is deliberately left untransformed, so its
+   coordinate space is screen space and ui.js can write the clip straight from
+   the slot's bounding rect. */
+.gl-clip {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.gl-clip .gl-wrap {
+  position: absolute !important;
+  inset: 0 !important;
+  transform-origin: center center;
+}
+
+/* her footer is kept: it already carries the contact link and the socials */
+body.edge-ready .s.is-footer {
+  display: block !important;
+  position: relative;
+  z-index: 6;
+}
+
+/* ---- our shell ---- */
+
+.edge-ui {
+  position: relative;
+  z-index: 5;
+}
+
+.hero-slot {
+  position: relative;
+  width: clamp(17rem, 42vw, 30rem);
+  aspect-ratio: 1;
+  flex: none;
+  align-self: center;
+  overflow: hidden;
+  border-radius: 1rem;
+}
+
+.hero-slot canvas { display: block; }
