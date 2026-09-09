@@ -20,6 +20,12 @@
 </head>
 
 <body>
+<!-- inline styles on purpose: the overlay has to cover the page on the first
+     paint, before css/*.css has landed, or the site flashes through behind it -->
+<div data-loader style="position:fixed;inset:0;z-index:9999;background:#08070f;display:flex;align-items:center;justify-content:center;transition:opacity .7s ease">
+  <canvas width="360" height="360" style="width:min(46vw,340px);aspect-ratio:1;border-radius:14px" aria-label="Loading"></canvas>
+</div>
+
 <canvas class="backdrop" data-starfield aria-hidden="true"></canvas>
 
 <div class="page">
@@ -155,6 +161,7 @@
   </main>
 </div>
 
+<script src="js/loader.js" defer></script>
 <script src="js/starfield.js" defer></script>
 <script src="js/reveal.js" defer></script>
 <script src="js/menu.js" defer></script>
