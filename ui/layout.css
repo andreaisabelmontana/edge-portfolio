@@ -374,3 +374,87 @@
 
 .panel-cta svg { transition: transform 0.35s var(--ease-spring); }
 .panel:hover .panel-cta svg { transform: translateX(2px); }
+
+/* ---- projects / about, in her ON LINE and OFF LINE idiom ----
+
+   her panels are a big wordmark in Brier, a line of Mona underneath, a small
+   purple round button, and a cut-out photo of her standing in the panel. the
+   type classes and the scroll animation are hers (text-impact-reg-brier,
+   text-body-reg-mona, split-text, data-anim-high), so the bundle animates these
+   exactly as it animates the rest of her site. */
+
+.otot-card {
+  position: relative;
+  display: block;
+  min-height: 26rem;
+  padding: 2rem 1.75rem 0;
+  overflow: hidden;
+  border-radius: 1rem;
+  background: rgba(10, 10, 16, 0.55);
+  border: 1px solid var(--line);
+  transition: border-color 0.5s var(--ease-out), background 0.5s var(--ease-out);
+}
+
+.otot-card:hover {
+  border-color: var(--edge-line);
+  background: rgba(14, 10, 22, 0.7);
+}
+
+.otot-card-text {
+  position: relative;
+  z-index: 2;
+  max-width: 15rem;
+}
+
+/* her Brier face is huge by default; hold it to the card */
+.otot-card .text-impact-reg-brier {
+  font-size: clamp(2.4rem, 4.4vw, 3.9rem);
+  line-height: 0.92;
+  margin: 0 0 0.75rem;
+  color: var(--ink);
+  text-transform: uppercase;
+}
+
+.otot-card .text-body-reg-mona {
+  margin: 0 0 1.25rem;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: var(--ink-muted);
+}
+
+.otot-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 0.55rem;
+  background: var(--edge);
+  color: #0b0a14;
+  transition: transform 0.4s var(--ease-spring), box-shadow 0.4s var(--ease-out);
+}
+
+.otot-card:hover .otot-btn {
+  transform: translateX(4px);
+  box-shadow: 0 6px 24px rgba(188, 19, 254, 0.45);
+}
+
+/* she stands in the panel, anchored to the bottom right and bleeding off it */
+.otot-card-img {
+  position: absolute;
+  right: -1.5rem;
+  bottom: 0;
+  width: 68%;
+  max-width: 21rem;
+  object-fit: contain;
+  object-position: bottom right;
+  pointer-events: none;
+  transition: transform 0.7s var(--ease-out);
+}
+
+.otot-card:hover .otot-card-img { transform: translateY(-6px) scale(1.02); }
+
+@media (max-width: 639px) {
+  .otot-card { min-height: 21rem; }
+  .otot-card-text { max-width: 11rem; }
+  .otot-card-img { width: 62%; right: -1rem; }
+}

@@ -55,7 +55,7 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
 <style>  
   .w-webflow-badge { display: none !important; }
   .transition-w {	display: flex; }
-</style><link href="./custom/custom.css?v=20260909a" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet"/><link rel="preload" href="gl/fonts/Brier-Bold-02.webp" as="image"/><link rel="preload" href="gl/fonts/MonaSans-Bold-02.webp" as="image"/><link rel="preload" href="gl/fonts/Brier-Bold-msdf.json" as="fetch" crossorigin="anonymous"/><link rel="preload" href="gl/fonts/MonaSans-Bold-msdf.json" as="fetch" crossorigin="anonymous"/><link rel="preload" href="gl/textures/head/webp/diffuse.webp" as="image"/><link rel="preload" href="gl/textures/head/webp/depth.webp" as="image"/><link rel="preload" href="gl/textures/helmet/webp/gold/Norris_Helmet_mat_BaseColor.webp" as="image"/><link rel="preload" href="gl/hdri/studio_small_08_1k--dark.hdr" as="fetch" crossorigin="anonymous"/><link rel="stylesheet" href="ui/tokens.css?v=20260909s"/><link rel="stylesheet" href="ui/base.css?v=20260909s"/><link rel="stylesheet" href="ui/layout.css?v=20260909s"/><link rel="stylesheet" href="ui/ui.css?v=20260909s"/></head><body data-edit=""><div id="am-loader" style="position:fixed;inset:0;z-index:99999;background:#08070f;display:flex;align-items:center;justify-content:center;transition:opacity .8s ease"><video src="./custom/loading.mp4" autoplay muted playsinline style="width:min(46vw,360px);max-width:80%;border-radius:14px"></video></div><script>(function(){var m=document.getElementById("am-loader");var v=m.querySelector("video");var ended=false,loaded=false;function maybe(){if(ended&&loaded){m.style.opacity="0";setTimeout(function(){if(m.parentNode)m.parentNode.removeChild(m)},900)}}v.addEventListener("ended",function(){ended=true;maybe()});if(document.readyState==="complete"){loaded=true}else window.addEventListener("load",function(){setTimeout(function(){loaded=true;maybe()},3000)});setTimeout(function(){ended=true;loaded=true;maybe()},15000);})();</script><div class="edge-ui">
+</style><link href="./custom/custom.css?v=20260909a" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet"/><link rel="preload" href="gl/fonts/Brier-Bold-02.webp" as="image"/><link rel="preload" href="gl/fonts/MonaSans-Bold-02.webp" as="image"/><link rel="preload" href="gl/fonts/Brier-Bold-msdf.json" as="fetch" crossorigin="anonymous"/><link rel="preload" href="gl/fonts/MonaSans-Bold-msdf.json" as="fetch" crossorigin="anonymous"/><link rel="preload" href="gl/textures/head/webp/diffuse.webp" as="image"/><link rel="preload" href="gl/textures/head/webp/depth.webp" as="image"/><link rel="preload" href="gl/textures/helmet/webp/gold/Norris_Helmet_mat_BaseColor.webp" as="image"/><link rel="preload" href="gl/hdri/studio_small_08_1k--dark.hdr" as="fetch" crossorigin="anonymous"/><link rel="stylesheet" href="ui/tokens.css?v=20260909t"/><link rel="stylesheet" href="ui/base.css?v=20260909t"/><link rel="stylesheet" href="ui/layout.css?v=20260909t"/><link rel="stylesheet" href="ui/ui.css?v=20260909t"/></head><body data-edit=""><div id="am-loader" style="position:fixed;inset:0;z-index:99999;background:#08070f;display:flex;align-items:center;justify-content:center;transition:opacity .8s ease"><video src="./custom/loading.mp4" autoplay muted playsinline style="width:min(46vw,360px);max-width:80%;border-radius:14px"></video></div><script>(function(){var m=document.getElementById("am-loader");var v=m.querySelector("video");var ended=false,loaded=false;function maybe(){if(ended&&loaded){m.style.opacity="0";setTimeout(function(){if(m.parentNode)m.parentNode.removeChild(m)},900)}}v.addEventListener("ended",function(){ended=true;maybe()});if(document.readyState==="complete"){loaded=true}else window.addEventListener("load",function(){setTimeout(function(){loaded=true;maybe()},3000)});setTimeout(function(){ended=true;loaded=true;maybe()},15000);})();</script><div class="edge-ui">
 
   <!-- only the language switcher is ours now. her nav supplies the astronaut
        and the animated menu button, and ui.js moves this into it. -->
@@ -73,15 +73,15 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
       <div class="container hero-inner">
 
         <div class="hero-copy">
-          <p class="eyebrow" data-reveal="0" data-i18n="hero.eyebrow">CS &amp; AI, IE University &middot; Madrid, Spain</p>
+          <p class="eyebrow text-eyebrow" data-anim-high="right, white" split-text="lines" data-i18n="hero.eyebrow">CS &amp; AI, IE University &middot; Madrid, Spain</p>
 
-          <h1 class="display" data-reveal="60">Andrea Montaña</h1>
+          <h1 class="display text-impact-reg-brier" data-anim-high="right, white" split-text="lines">Andrea Montaña</h1>
 
-          <p class="lead" data-reveal="120" data-i18n="hero.lead">
+          <p class="lead text-body-lg-mona" split-text="lines" data-i18n="hero.lead">
             I design at the edge where digital intelligence meets the physical world.
           </p>
 
-          <p class="facts" data-reveal="120" data-i18n="hero.facts">
+          <p class="facts text-body-reg-mona" split-text="lines" data-i18n="hero.facts">
             CS &amp; AI @ IE University &middot; previously Trinity College Dublin &middot;
             student-athlete &middot; interactive 3D, computer vision and the web
           </p>
@@ -109,30 +109,26 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
     <div class="container panels-wrap">
       <div class="panels">
 
-        <a class="panel" data-taxi-ignore href="./online" data-reveal="0">
-          <img class="panel-bg" src="ui/assets/panels/offline.webp" alt="" loading="lazy">
-          <div class="panel-scrim" aria-hidden="true"></div>
-          <div class="panel-text">
-            <h2 class="panel-title" data-i18n="panel.projects.title">Projects</h2>
-            <p class="panel-desc" data-i18n="panel.projects.desc">Interactive 3D, maps and storefronts.</p>
+        <a class="otot-card" data-taxi-ignore href="./online" data-reveal="0">
+          <div class="otot-card-text">
+            <h2 class="text-impact-reg-brier" data-anim-high="right, white" split-text="lines" data-i18n="panel.projects.title">PROJECTS</h2>
+            <p class="text-body-reg-mona" split-text="lines" data-i18n="panel.projects.desc">Project portfolio of code and research.</p>
+            <span class="otot-btn" aria-hidden="true">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
           </div>
-          <span class="panel-cta" aria-hidden="true">
-            <span data-i18n="cta.view">View</span>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </span>
+          <img class="otot-card-img" src="custom/on-vr.webp" alt="" loading="lazy">
         </a>
 
-        <a class="panel" data-taxi-ignore href="./about" data-reveal="90">
-          <img class="panel-bg" src="ui/assets/panels/about.webp" alt="" loading="lazy">
-          <div class="panel-scrim" aria-hidden="true"></div>
-          <div class="panel-text">
-            <h2 class="panel-title" data-i18n="panel.about.title">About</h2>
-            <p class="panel-desc" data-i18n="panel.about.desc">Bogota to Dublin to Madrid.</p>
+        <a class="otot-card" data-taxi-ignore href="./about" data-reveal="90">
+          <div class="otot-card-text">
+            <h2 class="text-impact-reg-brier" data-anim-high="right, white" split-text="lines" data-i18n="panel.about.title">ABOUT</h2>
+            <p class="text-body-reg-mona" split-text="lines" data-i18n="panel.about.desc">Bogota to Dublin to Madrid, and what I am building toward.</p>
+            <span class="otot-btn" aria-hidden="true">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
           </div>
-          <span class="panel-cta" aria-hidden="true">
-            <span data-i18n="cta.view">View</span>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </span>
+          <img class="otot-card-img" src="custom/off-vr.webp" alt="" loading="lazy">
         </a>
 
       </div>
@@ -140,6 +136,7 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
 
   </main>
 </div>
+
 
 
 
@@ -1385,4 +1382,4 @@ stroke="currentColor"/>
 
 
 </script>
-<div class="stars-overlay"></div><script id="helmet-keep-four">window.addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".helmet-grid-item").forEach(function(it,i){if(i>=4){var w=it.closest(".helmet-grid-item-w")||it;w.style.display="none";}});});</script><script defer src="./custom/vendor/three.min.js"></script><script defer src="./custom/experience.js?v=20260811l"></script><script src="ui/reveal.js?v=20260909s" defer></script><script src="ui/i18n.js?v=20260909s" defer></script><script src="ui/ui.js?v=20260909s" defer></script></body></html>
+<div class="stars-overlay"></div><script id="helmet-keep-four">window.addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".helmet-grid-item").forEach(function(it,i){if(i>=4){var w=it.closest(".helmet-grid-item-w")||it;w.style.display="none";}});});</script><script defer src="./custom/vendor/three.min.js"></script><script defer src="./custom/experience.js?v=20260811l"></script><script src="ui/reveal.js?v=20260909t" defer></script><script src="ui/i18n.js?v=20260909t" defer></script><script src="ui/ui.js?v=20260909t" defer></script></body></html>
