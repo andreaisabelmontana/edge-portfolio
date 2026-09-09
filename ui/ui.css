@@ -16,7 +16,12 @@ body.edge-ready {
    view. */
 body.edge-ready .transition-w,
 body.edge-ready .s:not(.home-hero):not(.is-footer),
-body.edge-ready .home-title-w {
+body.edge-ready .home-title-w,
+/* her scroll tracks are divs, not sections, so the rule above walked straight
+   past them. is-home-otot alone was 1470px of empty starfield under the cards. */
+body.edge-ready .sticky-track:not(.home-hero),
+body.edge-ready .sticky-track-theme-change,
+body.edge-ready .hero-nav-theme {
   display: none !important;
 }
 
