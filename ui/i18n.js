@@ -140,7 +140,25 @@
     nodes.forEach((n) => {
       const key = n.getAttribute('data-i18n');
       const value = dict[key] !== undefined ? dict[key] : EN[key];
-      if (value !== undefined) n.innerHTML = value;
+      if (value === undefined) return;
+
+      /* never rewrite an element that already reads correctly.
+
+         this is what kept killing the sweeps. her bundle splits these into
+         span.line elements and binds the highlight to them, and setting
+         innerHTML replaced those spans with a bare string, so the animation had
+         nothing left to drive. the re-apply after load did it every time, in
+         the same language, for no reason.
+
+         comparing the rendered text against the target means a repeat pass is a
+         no-op and the spans survive. a real language change still rewrites, and
+         loses the split, but by then the sweep has already played so there is
+         nothing to see. */
+      const target = document.createElement('div');
+      target.innerHTML = value;
+      if (n.textContent.trim() === target.textContent.trim()) return;
+
+      n.innerHTML = value;
     });
 
     translateNodes(lang);
