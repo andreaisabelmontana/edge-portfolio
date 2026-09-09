@@ -328,3 +328,18 @@ body.edge-ready .home .hero {
     right: -1rem;
   }
 }
+
+/* ---- footer: olive out, neutral dark grey in ----
+
+   .footer-layout-clip paints rgb(40,44,32), an olive left over from the
+   template's green palette, and the two dark-green tints beside it carry the
+   same cast. neutralised to greys of the same lightness so nothing else in the
+   footer shifts. */
+body.edge-ready {
+  --color--dark-green-tint-1: #37373b;
+  --color--dark-green-tint-2: #4f4f54;
+}
+
+body.edge-ready .footer-layout-clip {
+  background-color: #1c1c20 !important;
+}
