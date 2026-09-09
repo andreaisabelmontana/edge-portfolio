@@ -24,9 +24,12 @@
   const DICT = {
     es: {
       'nav.menu': 'menú',
-      'hero.eyebrow': 'CS e IA, IE University · Madrid, España',
+      'hero.eyebrow': 'CS e IA · IE University, Madrid · Graduación 2028',
+      'tag.ml': 'Aprendizaje automático',
+      'tag.cv': 'Visión por computador',
       'hero.lead': 'Diseño en el borde donde la inteligencia digital se encuentra con el mundo físico.',
-      'hero.facts': 'CS e IA en IE University · antes Trinity College Dublin · aprendizaje automático, visión por computador e interacción persona-computador · 3D interactivo, UX/UI y desarrollo web · Python, JavaScript, C',
+      'hero.facts': 'Aprendizaje automático, visión por computador e interacción persona-computador, llevados a 3D interactivo y desarrollo web completo.',
+      'tag.dsa': 'Algoritmos y estructuras de datos',
       'hero.status': 'Disponible para prácticas en otoño de 2026 y verano de 2027',
       'hero.work': 'Ver el trabajo',
       'panel.projects.title': 'PROYECTOS',
@@ -41,9 +44,12 @@
     },
     de: {
       'nav.menu': 'Menü',
-      'hero.eyebrow': 'CS & KI, IE University · Madrid, Spanien',
+      'hero.eyebrow': 'CS & KI · IE University, Madrid · Abschluss 2028',
+      'tag.ml': 'Machine Learning',
+      'tag.cv': 'Computer Vision',
       'hero.lead': 'Ich gestalte dort, wo digitale Intelligenz auf die physische Welt trifft.',
-      'hero.facts': 'CS & KI an der IE University · zuvor Trinity College Dublin · Machine Learning, Computer Vision und Mensch-Computer-Interaktion · interaktives 3D, UX/UI und Webentwicklung · Python, JavaScript, C',
+      'hero.facts': 'Machine Learning, Computer Vision und Mensch-Computer-Interaktion, umgesetzt als interaktives 3D und Full-Stack-Web.',
+      'tag.dsa': 'Algorithmen und Datenstrukturen',
       'hero.status': 'Offen für Praktika im Herbst 2026 und Sommer 2027',
       'hero.work': 'Zur Arbeit',
       'panel.projects.title': 'PROJEKTE',
@@ -88,21 +94,43 @@
   const EN = {};
   nodes.forEach((n) => { EN[n.getAttribute('data-i18n')] = n.innerHTML; });
 
-  // text node -> its original english, filled lazily on the first pass
-  const originals = new Map();
+  /* every known wording of a phrase, in any language, mapped back to its
+     english key.
 
-  function collect() {
+     the first version cached each text node's original english and reverted by
+     node identity. that breaks the moment her markup is rebuilt: the menu
+     overlay's contents are recreated when it opens, so those nodes were not the
+     ones that had been cached, and the menu stayed in spanish after switching
+     back to english.
+
+     matching on the text itself is stateless. a node can be found in any
+     language, at any time, and still resolves to the right target. */
+  const CANON = new Map();
+  Object.keys(PHRASES).forEach((en) => {
+    CANON.set(en, en);
+    Object.values(PHRASES[en]).forEach((variant) => CANON.set(variant, en));
+  });
+
+  function translateNodes(lang) {
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
       acceptNode(n) {
         if (SKIP.has(n.parentNode.nodeName)) return NodeFilter.FILTER_REJECT;
         if (n.parentNode.closest && n.parentNode.closest('[data-i18n]')) return NodeFilter.FILTER_REJECT;
-        return PHRASES[n.nodeValue.trim()] ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+        return CANON.has(n.nodeValue.trim()) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
       },
     });
+
+    const found = [];
     let n;
-    while ((n = walker.nextNode())) {
-      if (!originals.has(n)) originals.set(n, n.nodeValue);
-    }
+    while ((n = walker.nextNode())) found.push(n);
+
+    found.forEach((node) => {
+      const current = node.nodeValue.trim();
+      const key = CANON.get(current);
+      if (!key) return;
+      const target = lang === 'en' ? key : (PHRASES[key][lang] || key);
+      if (target !== current) node.nodeValue = node.nodeValue.replace(current, target);
+    });
   }
 
   function apply(lang) {
@@ -115,18 +143,7 @@
       if (value !== undefined) n.innerHTML = value;
     });
 
-    collect();
-    originals.forEach((original, node) => {
-      if (!node.isConnected) return;
-      const key = original.trim();
-      const phrase = PHRASES[key];
-      if (lang === 'en' || !phrase || !phrase[lang]) {
-        node.nodeValue = original;
-      } else {
-        // keep whatever spacing the original had around the word
-        node.nodeValue = original.replace(key, phrase[lang]);
-      }
-    });
+    translateNodes(lang);
 
     document.documentElement.lang = lang;
     document.querySelectorAll('[data-lang]').forEach((b) => {
@@ -135,6 +152,10 @@
       b.setAttribute('aria-pressed', String(on));
     });
     try { localStorage.setItem(STORE, lang); } catch (e) {}
+  }
+
+  function current() {
+    try { return localStorage.getItem(STORE) || 'en'; } catch (e) { return 'en'; }
   }
 
   /* build the switcher if this page has not got one, so a page mirrors with
@@ -162,14 +183,18 @@
 
   document.addEventListener('click', (e) => {
     const btn = e.target.closest('[data-lang]');
-    if (btn) apply(btn.getAttribute('data-lang'));
+    if (btn) { apply(btn.getAttribute('data-lang')); return; }
+
+    // her menu builds its contents as it opens, so run again once it is there
+    if (e.target.closest('.nav-ham, .btn-layout.is-nav, .nav-menu-w')) {
+      setTimeout(() => apply(current()), 120);
+      setTimeout(() => apply(current()), 600);
+    }
   });
 
   function boot() {
     ensureSwitcher();
-    let saved = 'en';
-    try { saved = localStorage.getItem(STORE) || 'en'; } catch (e) {}
-    apply(saved);
+    apply(current());
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);

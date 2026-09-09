@@ -458,3 +458,72 @@
   .otot-card-text { max-width: 11rem; }
   .otot-card-img { width: 62%; right: -1rem; }
 }
+
+/* ---- skills row ----
+
+   the four line grey paragraph was the least read thing on the page. every one
+   of these postings lists the same minimums, so the stack is broken out where
+   it can be scanned in a glance instead of buried in prose. */
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 1.1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tags li {
+  padding: 0.32rem 0.7rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  letter-spacing: 0.01em;
+  color: var(--ink-muted);
+  white-space: nowrap;
+  transition: border-color 0.3s var(--ease-out), color 0.3s var(--ease-out);
+}
+
+.tags li:hover { border-color: var(--edge-line); color: var(--ink); }
+
+/* her stylesheet puts markers on li, which were leaking through as stray dots
+   beside every tag. belt and braces, because they came from more than one rule. */
+.tags,
+.tags li {
+  list-style: none !important;
+}
+
+.tags li::marker { content: "" !important; }
+
+.tags li::before,
+.tags li::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* the hero was six stacked blocks at even spacing, which read as a wall. these
+   group it: label and name together, the statement apart, then the scannable
+   row, then the two calls to action. */
+body.edge-ready .hero-copy .eyebrow { margin-bottom: 0.35rem; }
+body.edge-ready .hero-copy .display { margin-bottom: 1.6rem; }
+body.edge-ready .hero-copy .lead { margin-bottom: 1.9rem; }
+body.edge-ready .hero-copy .tags { margin-bottom: 2rem; }
+body.edge-ready .hero-copy .status { margin-top: 0; margin-bottom: 1.6rem; }
+body.edge-ready .hero-copy .hero-links { margin-top: 0; }
+
+/* everything that is not her name is set in Mona Sans Variable, her other face.
+   Brier is reserved for the display line, which is what gives it its weight. */
+body.edge-ready .hero-copy .eyebrow,
+body.edge-ready .hero-copy .lead,
+body.edge-ready .hero-copy .status,
+body.edge-ready .hero-copy .hero-links,
+body.edge-ready .hero-copy .arrow-link,
+body.edge-ready .tags,
+body.edge-ready .tags li,
+body.edge-ready .otot-card .text-body-reg-mona,
+body.edge-ready .otot-btn,
+.nav .lang,
+.nav .lang button {
+  font-family: "Mona Sans Variable", Arial, sans-serif !important;
+}
