@@ -69,6 +69,8 @@
      in every language. */
   const PHRASES = {
     'Home': { es: 'Inicio', de: 'Startseite' },
+    'Projects': { es: 'Proyectos', de: 'Projekte' },
+    'About': { es: 'Sobre mí', de: 'Über mich' },
     'Online': { es: 'En línea', de: 'Online' },
     'Offline': { es: 'Fuera de línea', de: 'Offline' },
     'Calendar': { es: 'Calendario', de: 'Kalender' },
