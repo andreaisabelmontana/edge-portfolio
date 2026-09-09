@@ -47,6 +47,14 @@ p {
   border-radius: 4px;
 }
 
+/* the ua rule for [hidden] is display:none at element specificity, so any
+   class that sets display beats it. without this an overlay written as
+   .panel{display:flex} stays laid out while "hidden" and swallows every click
+   on the page beneath it. */
+[hidden] {
+  display: none !important;
+}
+
 /* the starfield sits behind everything and never takes a click.
    width/height are explicit: a canvas is a replaced element, so inset:0 alone
    leaves it at its intrinsic 300x150 instead of stretching. */

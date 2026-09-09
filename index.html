@@ -3,16 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Andrea Montana | CS &amp; AI Student, Interactive Engineer</title>
-<meta name="description" content="Personal site and CS portfolio of Andrea Montana, a Computer Science and Artificial Intelligence student at IE University working on interactive 3D, computer vision and the web.">
+<title>Andrea Montaña | CS &amp; AI Student, Interactive Engineer</title>
+<meta name="description" content="Personal site and CS portfolio of Andrea Montaña, a Computer Science and Artificial Intelligence student at IE University working on interactive 3D, computer vision and the web.">
 
-<meta property="og:title" content="Andrea Montana | CS &amp; AI Student, Interactive Engineer">
+<meta property="og:title" content="Andrea Montaña | CS &amp; AI Student, Interactive Engineer">
 <meta property="og:description" content="Computer Science and AI at IE University. Interactive 3D, computer vision and the web.">
 <meta property="og:type" content="website">
 
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/home.css">
+
+<script type="importmap">
+{ "imports": { "three": "./vendor/three.module.js" } }
+</script>
 </head>
 
 <body>
@@ -22,15 +26,46 @@
 
   <header class="nav">
     <div class="container nav-inner">
-      <a class="nav-brand" href="./">Andrea Montana</a>
-      <nav class="nav-links" aria-label="Main">
-        <a href="projects/">Projects</a>
-        <a href="experience/">Experience</a>
-        <a href="offline/">Offline</a>
-        <a class="is-cv" href="cv/">CV</a>
-      </nav>
+
+      <a class="nav-brand" href="./" aria-label="Andrea Montaña, home">
+        <img src="assets/astronaut.png" alt="" width="34" height="34">
+      </a>
+
+      <div class="nav-right">
+        <div class="lang" role="group" aria-label="Language">
+          <button type="button" data-lang="en" aria-pressed="true">en</button>
+          <span aria-hidden="true">/</span>
+          <button type="button" data-lang="es" aria-pressed="false">es</button>
+          <span aria-hidden="true">/</span>
+          <button type="button" data-lang="de" aria-pressed="false">de</button>
+        </div>
+
+        <a class="nav-cv" href="cv/" data-i18n="nav.cv">CV</a>
+
+        <button class="nav-menu" type="button" data-menu-button aria-expanded="false" aria-controls="menu-panel">
+          <span class="nav-menu-bars" aria-hidden="true"><i></i><i></i></span>
+          <span data-i18n="nav.menu">menu</span>
+        </button>
+      </div>
+
     </div>
   </header>
+
+  <!-- the bar carries no tabs, so every destination lives in here -->
+  <div class="menu-panel" id="menu-panel" data-menu-panel hidden>
+    <nav class="menu-inner" aria-label="Sections">
+      <a href="projects/"><span class="menu-index">01</span> <span data-i18n="panel.projects.title">Projects</span></a>
+      <a href="experience/"><span class="menu-index">02</span> <span data-i18n="panel.experience.title">Experience</span></a>
+      <a href="offline/"><span class="menu-index">03</span> <span data-i18n="panel.offline.title">Offline</span></a>
+      <a href="about/"><span class="menu-index">04</span> <span data-i18n="panel.about.title">About</span></a>
+      <a href="cv/"><span class="menu-index">05</span> <span data-i18n="nav.cv">CV</span></a>
+    </nav>
+    <div class="menu-social">
+      <a href="https://github.com/andreaisabelmontana" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/andrea-isabel-montana" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.instagram.com/artedelamontana/" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </div>
 
   <main class="home">
 
@@ -38,49 +73,34 @@
       <div class="container hero-inner">
 
         <div class="hero-copy">
-          <p class="eyebrow" data-reveal="0">CS &amp; AI, IE University &middot; Madrid, Spain</p>
+          <p class="eyebrow" data-reveal="0" data-i18n="hero.eyebrow">CS &amp; AI, IE University &middot; Madrid, Spain</p>
 
-          <h1 class="display" data-reveal="60">Andrea Montana</h1>
+          <h1 class="display" data-reveal="60">Andrea Montaña</h1>
 
-          <p class="lead" data-reveal="120">
+          <p class="lead" data-reveal="120" data-i18n="hero.lead">
             I design at the edge where digital intelligence meets the physical world.
           </p>
 
-          <p class="facts" data-reveal="120">
+          <p class="facts" data-reveal="120" data-i18n="hero.facts">
             CS &amp; AI @ IE University &middot; previously Trinity College Dublin &middot;
             student-athlete &middot; interactive 3D, computer vision and the web
           </p>
 
           <p class="status" data-reveal="180">
             <span class="status-dot" aria-hidden="true"></span>
-            Graduating 2027 &middot; open to internships
+            <span data-i18n="hero.status">Open to fall 2026 internships and summer 2027</span>
           </p>
 
           <div class="hero-links" data-reveal="240">
-            <a class="arrow-link" href="projects/">See the work <span aria-hidden="true">&rarr;</span></a>
-            <a class="arrow-link" href="cv/">CV <span aria-hidden="true">&rarr;</span></a>
+            <a class="arrow-link" href="projects/"><span data-i18n="hero.work">See the work</span> <span aria-hidden="true">&rarr;</span></a>
+            <a class="arrow-link" href="cv/"><span data-i18n="nav.cv">CV</span> <span aria-hidden="true">&rarr;</span></a>
             <a class="arrow-link" href="https://github.com/andreaisabelmontana" target="_blank" rel="noopener">GitHub <span aria-hidden="true">&#8599;</span></a>
             <a class="arrow-link" href="https://www.linkedin.com/in/andrea-isabel-montana" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">&#8599;</span></a>
           </div>
         </div>
 
-        <!-- the stack she actually builds with. rendered once here on desktop
-             and once after the panels on mobile, never both at the same time. -->
-        <div class="cloud cloud-beside" data-reveal="100" aria-hidden="true">
-          <div class="cloud-ring"></div>
-          <div class="cloud-ring"></div>
-          <div class="cloud-ring"></div>
-          <div class="cloud-orbit">
-            <div class="cloud-spin">
-              <div class="cloud-mark" style="--a:0deg;   --r:6rem"><img src="assets/logos/collab-threejs.svg" alt=""></div>
-              <div class="cloud-mark" style="--a:72deg;  --r:6rem"><img src="assets/logos/collab-react.svg" alt=""></div>
-              <div class="cloud-mark" style="--a:144deg; --r:6rem"><img src="assets/logos/collab-python.svg" alt=""></div>
-              <div class="cloud-mark" style="--a:216deg; --r:6rem"><img src="assets/logos/collab-docker.svg" alt=""></div>
-              <div class="cloud-mark" style="--a:288deg; --r:6rem"><img src="assets/logos/collab-github.svg" alt=""></div>
-            </div>
-          </div>
-          <p class="cloud-core">Built<br>with</p>
-        </div>
+        <!-- her portrait, displaced by its own depth map -->
+        <div class="head" data-head data-reveal="100" role="img" aria-label="Portrait of Andrea Montaña"></div>
 
       </div>
     </section>
@@ -94,8 +114,8 @@
           <div class="panel-grid" aria-hidden="true"></div>
           <svg class="panel-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           <div class="panel-text">
-            <h2 class="panel-title">Projects</h2>
-            <p class="panel-desc">Interactive 3D, maps and storefronts, filterable by what they are made of.</p>
+            <h2 class="panel-title" data-i18n="panel.projects.title">Projects</h2>
+            <p class="panel-desc" data-i18n="panel.projects.desc">Interactive 3D, maps and storefronts, filterable by what they are made of.</p>
           </div>
         </a>
 
@@ -104,8 +124,8 @@
           <div class="panel-scrim" aria-hidden="true"></div>
           <svg class="panel-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           <div class="panel-text">
-            <h2 class="panel-title">Experience</h2>
-            <p class="panel-desc">Studies and work, mapped to where they happened.</p>
+            <h2 class="panel-title" data-i18n="panel.experience.title">Experience</h2>
+            <p class="panel-desc" data-i18n="panel.experience.desc">Studies and work, mapped to where they happened.</p>
           </div>
         </a>
 
@@ -114,8 +134,8 @@
           <div class="panel-scrim" aria-hidden="true"></div>
           <svg class="panel-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           <div class="panel-text">
-            <h2 class="panel-title">Offline</h2>
-            <p class="panel-desc">Life away from the screen.</p>
+            <h2 class="panel-title" data-i18n="panel.offline.title">Offline</h2>
+            <p class="panel-desc" data-i18n="panel.offline.desc">Life away from the screen.</p>
           </div>
         </a>
 
@@ -124,29 +144,11 @@
           <div class="panel-scrim" aria-hidden="true"></div>
           <svg class="panel-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           <div class="panel-text">
-            <h2 class="panel-title">About</h2>
-            <p class="panel-desc">Bogota to Dublin to Madrid, and what I am building toward.</p>
+            <h2 class="panel-title" data-i18n="panel.about.title">About</h2>
+            <p class="panel-desc" data-i18n="panel.about.desc">Bogota to Dublin to Madrid, and what I am building toward.</p>
           </div>
         </a>
 
-      </div>
-
-      <div class="cloud-below">
-        <div class="cloud" aria-hidden="true">
-          <div class="cloud-ring"></div>
-          <div class="cloud-ring"></div>
-          <div class="cloud-ring"></div>
-          <div class="cloud-orbit">
-            <div class="cloud-spin">
-              <div class="cloud-mark" style="--a:0deg;   --r:4.9rem"><img src="assets/logos/collab-threejs.svg" alt=""></div>
-              <div class="cloud-mark" style="--a:72deg;  --r:4.9rem"><img src="assets/logos/collab-react.svg" alt=""></div>
-              <div class="cloud-mark" style="--a:144deg; --r:4.9rem"><img src="assets/logos/collab-python.svg" alt=""></div>
-              <div class="cloud-mark" style="--a:216deg; --r:4.9rem"><img src="assets/logos/collab-docker.svg" alt=""></div>
-              <div class="cloud-mark" style="--a:288deg; --r:4.9rem"><img src="assets/logos/collab-github.svg" alt=""></div>
-            </div>
-          </div>
-          <p class="cloud-core">Built<br>with</p>
-        </div>
       </div>
     </div>
 
@@ -155,5 +157,8 @@
 
 <script src="js/starfield.js" defer></script>
 <script src="js/reveal.js" defer></script>
+<script src="js/menu.js" defer></script>
+<script src="js/i18n.js" defer></script>
+<script type="module" src="js/head.js"></script>
 </body>
 </html>

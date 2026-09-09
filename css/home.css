@@ -1,9 +1,10 @@
 /* the landing.
 
-   desktop reads as one viewport: nav, hero band with the stack cloud beside
-   it, a rule, then four panels filling whatever height is left. mobile drops
-   to a single column and the cloud moves below the panels, so the vertical
-   read stays hero -> panels -> cloud. */
+   desktop reads as one viewport: nav, hero band with the head beside it, a
+   rule, then four panels filling whatever height is left. mobile drops to a
+   single column with the head under the copy.
+
+   the bar carries no section tabs by design; the overlay menu holds them. */
 
 /* ---- nav ---- */
 
@@ -27,41 +28,155 @@
   width: 100%;
 }
 
+/* the brand is the astronaut, not a wordmark. it floats a little on hover so
+   the only mark in the bar still feels like a control. */
 .nav-brand {
-  font-size: 0.88rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  white-space: nowrap;
+  display: inline-flex;
+  flex: none;
 }
 
-.nav-links {
+.nav-brand img {
+  width: 2.1rem;
+  height: 2.1rem;
+  object-fit: contain;
+  transition: transform 0.5s var(--ease-spring);
+}
+
+.nav-brand:hover img { transform: translateY(-2px) rotate(-6deg); }
+
+.nav-right {
   display: flex;
   align-items: center;
-  gap: clamp(0.9rem, 2.2vw, 1.9rem);
+  gap: clamp(0.7rem, 1.8vw, 1.4rem);
+}
+
+/* language switcher. buttons rather than links: it changes the page in place
+   and there is no separate url to send anyone to. */
+.lang {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+}
+
+.lang button {
+  background: none;
+  border: 0;
+  padding: 0.15rem 0.1rem;
+  font: inherit;
+  color: var(--ink-faint);
+  cursor: pointer;
+  transition: color 0.25s var(--ease-out);
+}
+
+.lang button:hover { color: var(--ink); }
+.lang button.is-on { color: var(--edge); font-weight: 600; }
+
+.nav-cv {
   font-size: 0.82rem;
-  letter-spacing: 0.04em;
-  color: var(--ink-muted);
-}
-
-.nav-links a {
-  position: relative;
-  padding-block: 0.35rem;
-  transition: color 0.3s var(--ease-out);
-}
-
-.nav-links a:hover { color: var(--ink); }
-
-.nav-links a.is-cv {
   border: 1px solid var(--line-strong);
   border-radius: 999px;
   padding: 0.35rem 0.9rem;
+  transition: border-color 0.3s var(--ease-out), color 0.3s var(--ease-out);
 }
 
-.nav-links a.is-cv:hover {
-  border-color: var(--edge);
+.nav-cv:hover { border-color: var(--edge); color: var(--edge); }
+
+.nav-menu {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: 0;
+  padding: 0.35rem 0;
+  font: inherit;
+  font-size: 0.82rem;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.nav-menu-bars {
+  display: grid;
+  gap: 4px;
+  width: 1.15rem;
+}
+
+.nav-menu-bars i {
+  display: block;
+  height: 1.5px;
+  background: currentColor;
+  transition: transform 0.35s var(--ease-out);
+}
+
+.nav-menu[aria-expanded="true"] .nav-menu-bars i:first-child { transform: translateY(2.75px) rotate(45deg); }
+.nav-menu[aria-expanded="true"] .nav-menu-bars i:last-child { transform: translateY(-2.75px) rotate(-45deg); }
+
+/* ---- menu overlay ---- */
+
+.menu-panel {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2.5rem;
+  padding: var(--nav-height) var(--gutter) 3rem;
+  background: rgba(5, 5, 5, 0.97);
+  opacity: 0;
+  transition: opacity 0.3s var(--ease-out);
+}
+
+.menu-panel.is-open { opacity: 1; }
+
+.menu-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  max-width: var(--container);
+  margin-inline: auto;
+  width: 100%;
+}
+
+.menu-inner a {
+  display: flex;
+  align-items: baseline;
+  gap: 1.1rem;
+  padding: 0.5rem 0;
+  font-size: clamp(1.9rem, 6vw, 3.4rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--ink-muted);
+  transition: color 0.3s var(--ease-out), transform 0.4s var(--ease-out);
+}
+
+.menu-inner a:hover {
+  color: var(--ink);
+  transform: translateX(0.6rem);
+}
+
+.menu-index {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
   color: var(--edge);
 }
+
+.menu-social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  max-width: var(--container);
+  margin-inline: auto;
+  width: 100%;
+  font-size: 0.85rem;
+  color: var(--ink-faint);
+}
+
+.menu-social a { transition: color 0.25s var(--ease-out); }
+.menu-social a:hover { color: var(--edge); }
 
 /* ---- hero ---- */
 
@@ -93,96 +208,26 @@
   margin-top: 1.5rem;
 }
 
-/* ---- stack cloud ----
-   the logos she actually builds with, orbiting slowly. it plays the same role
-   as a credentials strip without claiming an affiliation she does not have. */
+/* ---- head stage ----
+   the canvas is sized by its box, not the window, so the renderer only ever
+   paints the area the hero actually gives it. */
 
-.cloud {
-  --size: clamp(13rem, 34vw, 19rem);
+.head {
   position: relative;
-  width: var(--size);
-  height: var(--size);
+  width: clamp(16rem, 40vw, 28rem);
+  aspect-ratio: 1;
   flex: none;
   align-self: center;
+  opacity: 0;
+  transition: opacity 1.1s var(--ease-out);
 }
 
-.cloud-ring {
-  position: absolute;
-  inset: 0;
-  border: 1px solid var(--line);
-  border-radius: 50%;
-}
+.head[data-head-ready] { opacity: 1; }
 
-.cloud-ring:nth-child(2) { inset: 14%; opacity: 0.6; }
-.cloud-ring:nth-child(3) { inset: 28%; opacity: 0.35; }
-
-/* the two spinners are zero-size pivots at the centre, not full-bleed squares.
-   a rotated 304px square reports a bounding box up to 304 * sqrt(2) wide, which
-   pushed a horizontal scrollbar onto the whole page. a 0x0 point rotates to
-   nothing, so only the pills themselves take up room. */
-.cloud-orbit {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  animation: orbit 44s linear infinite;
-}
-
-/* her logo files are wordmarks (svg <text>, not glyphs), so each mark is a
-   pill sized to the word rather than a round icon badge. the trailing
-   translate(-50%,-50%) runs in the pill's own space after the counter-spin,
-   which centres a variable-width pill on its orbit point. */
-.cloud-mark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: grid;
-  place-items: center;
-  padding: 0.4rem 0.85rem;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: rgba(13, 13, 19, 0.92);
-  white-space: nowrap;
-  transform: rotate(var(--a)) translate(var(--r)) rotate(calc(-1 * var(--a)))
-    translate(-50%, -50%);
-  transition: border-color 0.35s var(--ease-out);
-}
-
-/* max-width:none overrides the global img reset. the pivots above are 0 wide,
-   so a percentage max-width would resolve against nothing and collapse the
-   wordmark to zero. width comes from the height and the svg's own ratio. */
-.cloud-mark img {
-  height: 0.82rem;
-  width: auto;
-  max-width: none;
-  opacity: 0.85;
-}
-
-/* counter-spin each mark so the logos stay upright while the ring turns */
-.cloud-spin {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 0;
-  animation: orbit 44s linear infinite reverse;
-}
-
-.cloud-core {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 0.6rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-  text-align: center;
-}
-
-@keyframes orbit {
-  to { transform: rotate(360deg); }
+.head canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
 }
 
 /* ---- panels ---- */
@@ -321,32 +366,17 @@
     justify-content: space-between;
     gap: 4rem;
   }
-  .cloud { align-self: auto; }
+  .head { align-self: auto; }
   .panels { grid-template-columns: repeat(4, 1fr); }
-  .cloud-below { display: none; }
 }
 
-/* the brand plus four links does not fit a 375px bar without shrinking the
-   type past readable. the four panels sitting directly below are the same four
-   destinations, so on phones the bar keeps only the brand and the cv pill
-   rather than growing a hamburger for links the page already shows. */
-@media (max-width: 639px) {
-  .nav-links a:not(.is-cv) { display: none; }
-}
-
-/* below 1024 the cloud is rendered once, after the panels */
-@media (max-width: 1023px) {
-  .cloud-beside { display: none; }
-  .cloud-below {
-    display: flex;
-    justify-content: center;
-    padding: 2rem 0 2.5rem;
-    border-top: 1px solid var(--line);
-  }
+/* phones: the cv pill is reachable from the menu, so drop it from the bar and
+   leave the astronaut, the languages and the menu button room to breathe. */
+@media (max-width: 479px) {
+  .nav-cv { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .cloud-orbit,
-  .cloud-spin { animation: none; }
   .panel:hover { transform: none; }
+  .menu-inner a:hover { transform: none; }
 }
