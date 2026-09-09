@@ -55,6 +55,9 @@
   let clip = null;
   let wrap = null;
 
+  // the live mapping, so pointer events can be run back through it
+  let map = null;
+
   function frameHead() {
     wrap = document.querySelector('.gl-wrap');
     if (!wrap || !FRAME) return;
@@ -77,6 +80,7 @@
     if (vw < 1024 || !s.width) {
       clip.style.clipPath = 'none';
       wrap.style.transform = 'none';
+      map = null;
       document.documentElement.style.setProperty('--head-bottom', vh + 'px');
       return;
     }
@@ -92,6 +96,7 @@
     wrap.style.transformOrigin = '0 0';
     wrap.style.transform = `translate(${tx}px, ${ty}px) scale(${k})`;
     clip.style.clipPath = 'none';
+    map = { tx, ty, k };
 
     /* the scaled canvas stops painting at ty + k*vh, and that hard line is
        where she visibly ends. published so the hero's black can finish on the
@@ -113,10 +118,62 @@
     else inner.appendChild(lang);
   }
 
+  /* put the cursor back under the helmet.
+
+     the canvas is transformed, but the scene reads clientX/clientY and
+     normalises against innerWidth, so it is still thinking in untransformed
+     viewport space and the lens lands wherever the mouse would have been
+     before the move. the transform is affine with origin 0 0, screen = t + k*p,
+     so the inverse is exact: p = (screen - t) / k.
+
+     the real move events are stopped in the capture phase on window, before
+     anything else sees them, and a corrected copy is dispatched on the same
+     target. only move events are touched: clicks are left alone so her buttons
+     and menu keep working on the coordinates the dom actually uses.
+
+     touch needs no handling because the frame is only applied at 1024 and up,
+     where fit() has already cleared the transform. */
+  const CORRECTED = new WeakSet();
+
+  function correctPointer(e) {
+    if (!map || CORRECTED.has(e)) return;
+
+    const x = (e.clientX - map.tx) / map.k;
+    const y = (e.clientY - map.ty) / map.k;
+    if (!isFinite(x) || !isFinite(y)) return;
+
+    e.stopImmediatePropagation();
+
+    const Ctor = e instanceof PointerEvent ? PointerEvent : MouseEvent;
+    const copy = new Ctor(e.type, {
+      bubbles: true,
+      cancelable: e.cancelable,
+      composed: true,
+      view: window,
+      clientX: x,
+      clientY: y,
+      screenX: x,
+      screenY: y,
+      buttons: e.buttons,
+      pointerId: e.pointerId,
+      pointerType: e.pointerType,
+      isPrimary: e.isPrimary,
+    });
+    CORRECTED.add(copy);
+    e.target.dispatchEvent(copy);
+  }
+
+  function armPointerCorrection() {
+    ['mousemove', 'pointermove'].forEach((t) =>
+      window.addEventListener(t, correctPointer, true),
+    );
+  }
+
   function restructure() {
     document.body.classList.add('edge-ready');
     adoptNav();
     frameHead();
+    armPointerCorrection();
     window.dispatchEvent(new Event('resize'));
     setTimeout(fit, 400);
     addEventListener('scroll', fit, { passive: true });
