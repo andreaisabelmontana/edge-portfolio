@@ -169,56 +169,20 @@
     );
   }
 
-  /* her menu still carries the template's own labels. renaming them is not a
-     text swap: split-text="chars" has already exploded each word into one
-     <span class="char"> per letter and her hover animation drives those spans,
-     so setting textContent would flatten them and kill the effect. the spans are
-     rebuilt instead, same structure, new word.
+  /* the menu labels are renamed in index.html, not here.
 
-     it runs again after the menu opens because her overlay rebuilds its
-     contents at that point. */
-  const RENAME = {
-    Online: { label: 'Projects', href: './online' },
-    Offline: { label: 'About', href: './off-track' },
-    Calendar: { label: 'Contact', href: 'mailto:amontana.ieu2023@student.ie.edu' },
-  };
+     they were renamed at runtime first, by rebuilding the char spans. that
+     broke the hover animation on exactly the links it touched: her bundle
+     splits the word at init and binds the effect to those span elements, so
+     replacing them left the timeline pointing at nodes no longer in the
+     document. Home still animated because it was the one word left alone.
 
-  function renameMenu() {
-    document.querySelectorAll('.nav-menu-link-w, .nav-menu-links-list a').forEach((link) => {
-      const sr = link.querySelector('[screen-reader]');
-      const split = link.querySelector('[split-text], .text-nav-link');
-      if (!split) return;
-
-      const currentWord = (sr ? sr.textContent : split.textContent).trim();
-      const rename = RENAME[currentWord];
-      if (!rename) return;
-
-      if (sr) sr.textContent = rename.label;
-      split.setAttribute('aria-label', rename.label);
-      split.innerHTML = [...rename.label]
-        .map((ch) => `<span class="char" aria-hidden="true">${ch === ' ' ? '&nbsp;' : ch}</span>`)
-        .join('');
-
-      if (link.tagName === 'A') link.setAttribute('href', rename.href);
-      else {
-        const a = link.closest('a') || link.querySelector('a');
-        if (a) a.setAttribute('href', rename.href);
-      }
-    });
-  }
+     renaming the source text means the split runs on the new word and binds to
+     it natively, and every link animates. */
 
   function restructure() {
     document.body.classList.add('edge-ready');
     adoptNav();
-    renameMenu();
-    ['click'].forEach(() =>
-      document.addEventListener('click', (e) => {
-        if (e.target.closest('.nav-ham, .btn-layout.is-nav, .nav-menu-w')) {
-          setTimeout(renameMenu, 150);
-          setTimeout(renameMenu, 700);
-        }
-      }),
-    );
     frameHead();
     armPointerCorrection();
     window.dispatchEvent(new Event('resize'));
