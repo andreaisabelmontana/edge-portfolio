@@ -106,6 +106,14 @@ body.edge-ready .nav-brand canvas {
   transition: color 0.25s ease;
 }
 
+/* her nav is pointer-events:none so the hero stays interactive underneath, and
+   her own controls opt back in. our switcher is injected, so it has to opt in
+   too or the buttons simply are not clickable. */
+.nav .lang,
+.nav .lang button {
+  pointer-events: auto !important;
+}
+
 .nav .lang button:hover { color: #f4f4ed; }
 .nav .lang button.is-on { color: #bc13fe; font-weight: 600; }
 
