@@ -77,6 +77,7 @@
     if (vw < 1024 || !s.width) {
       clip.style.clipPath = 'none';
       wrap.style.transform = 'none';
+      document.documentElement.style.setProperty('--head-bottom', vh + 'px');
       return;
     }
 
@@ -91,10 +92,30 @@
     wrap.style.transformOrigin = '0 0';
     wrap.style.transform = `translate(${tx}px, ${ty}px) scale(${k})`;
     clip.style.clipPath = 'none';
+
+    /* the scaled canvas stops painting at ty + k*vh, and that hard line is
+       where she visibly ends. published so the hero's black can finish on the
+       same line instead of running past her. */
+    document.documentElement.style.setProperty('--head-bottom', (ty + k * vh) + 'px');
+  }
+
+  /* her nav stays and ours is gone: it already carries the astronaut and the
+     animated hamburger, wired to her own menu overlay. the language switcher is
+     the only piece of ours that belongs up there, so it is moved into her bar
+     rather than a second bar being drawn over hers. */
+  function adoptNav() {
+    const lang = document.querySelector('[data-lang-switch]');
+    const inner = document.querySelector('.nav .nav-inner');
+    const ham = document.querySelector('.nav-ham, .btn-layout.is-nav');
+    if (!lang || !inner) return;
+    lang.hidden = false;
+    if (ham && ham.parentElement === inner) inner.insertBefore(lang, ham);
+    else inner.appendChild(lang);
   }
 
   function restructure() {
     document.body.classList.add('edge-ready');
+    adoptNav();
     frameHead();
     window.dispatchEvent(new Event('resize'));
     setTimeout(fit, 400);

@@ -14,7 +14,6 @@ body.edge-ready {
 /* her page, minus the parts we are replacing. the nav and the transition layer
    stay in the dom because the bundle reads them; they are only taken out of
    view. */
-body.edge-ready .nav:not(.edge-nav),
 body.edge-ready .transition-w,
 body.edge-ready .s:not(.home-hero):not(.is-footer),
 body.edge-ready .home-title-w {
@@ -28,18 +27,54 @@ body.edge-ready .home-hero-next-race-w {
   display: none !important;
 }
 
-/* the top bar carries three things and nothing else: the astronaut, the
-   languages and the menu. these are her template's own nav furniture, which
-   sits at the same height and shows through as stray blocks beside the menu. */
-body.edge-ready .transition-btn,
-body.edge-ready .btn-layout.is-nav,
-body.edge-ready .nav-rive-w,
-body.edge-ready .nav-helmet-rive-w,
-body.edge-ready .nav-menu-w,
-body.edge-ready .nav-menu-bg,
-body.edge-ready .nav-brand-link,
-body.edge-ready .nav-middle {
+/* her bar is the bar: the astronaut, then our languages, then her animated
+   hamburger. only the middle link cluster and the stray transition button go. */
+body.edge-ready .nav-middle,
+body.edge-ready .transition-btn {
   display: none !important;
+}
+
+/* she had it at 122px, which reads as a slab across the top */
+body.edge-ready .nav {
+  height: 76px !important;
+  min-height: 0 !important;
+}
+
+body.edge-ready .nav-inner {
+  height: 76px !important;
+  min-height: 0 !important;
+  align-items: center !important;
+  padding-inline: clamp(1.25rem, 3vw, 2.5rem) !important;
+  gap: 1.5rem;
+}
+
+/* the astronaut came in at 140x105 and dwarfed everything beside it */
+body.edge-ready .nav-brand-link,
+body.edge-ready .nav-brand {
+  width: 58px !important;
+  height: 58px !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+}
+
+body.edge-ready .nav-brand svg,
+body.edge-ready .nav-brand img,
+body.edge-ready .nav-brand canvas {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain;
+}
+
+/* our languages, set to match her hamburger rather than shrinking beside it */
+body.edge-ready .nav .lang {
+  margin-left: auto;
+  margin-right: 1.25rem;
+  font-size: 1.02rem;
+  letter-spacing: 0.01em;
+}
+
+body.edge-ready .nav .lang button {
+  font-size: 1.02rem;
 }
 
 body.edge-ready .edge-ui { display: block; }
@@ -158,6 +193,10 @@ body.edge-ready .home .hero {
   body.edge-ready .home .hero {
     align-items: flex-start;
     padding-top: 9vh;
+    /* end the black on the same line the head ends on. --head-bottom is
+       measured from the top of the viewport by ui.js, and the hero starts
+       directly under the 76px bar, so the bar comes back off. */
+    min-height: calc(var(--head-bottom, 88vh) - 76px);
   }
   body.edge-ready .home .hero .container {
     max-width: none;

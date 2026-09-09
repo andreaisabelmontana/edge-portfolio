@@ -1,42 +1,13 @@
 <div class="edge-ui">
 
-  <header class="nav edge-nav">
-    <div class="container nav-inner">
-
-      <a class="nav-brand" href="./" aria-label="Andrea Montaña, home">
-        <img src="ui/assets/astronaut.png" alt="" width="34" height="34">
-      </a>
-
-      <div class="nav-right">
-        <div class="lang" role="group" aria-label="Language">
-          <button type="button" data-lang="en" aria-pressed="true">en</button>
-          <span aria-hidden="true">/</span>
-          <button type="button" data-lang="es" aria-pressed="false">es</button>
-          <span aria-hidden="true">/</span>
-          <button type="button" data-lang="de" aria-pressed="false">de</button>
-        </div>
-
-        <button class="nav-menu" type="button" data-menu-button aria-expanded="false" aria-controls="edge-menu">
-          <span class="nav-menu-bars" aria-hidden="true"><i></i><i></i></span>
-          <span data-i18n="nav.menu">menu</span>
-        </button>
-      </div>
-
-    </div>
-  </header>
-
-  <div class="menu-panel" id="edge-menu" data-menu-panel hidden>
-    <nav class="menu-inner" aria-label="Sections">
-      <a data-taxi-ignore href="./online"><span class="menu-index">01</span> <span data-i18n="panel.projects.title">Projects</span></a>
-      <a data-taxi-ignore href="./experience"><span class="menu-index">02</span> <span data-i18n="panel.experience.title">Experience</span></a>
-      <a data-taxi-ignore href="./off-track"><span class="menu-index">03</span> <span data-i18n="panel.offline.title">Offline</span></a>
-      <a data-taxi-ignore href="./about"><span class="menu-index">04</span> <span data-i18n="panel.about.title">About</span></a>
-    </nav>
-    <div class="menu-social">
-      <a href="https://github.com/andreaisabelmontana" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://www.linkedin.com/in/andrea-isabel-montana" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://www.instagram.com/artedelamontana/" target="_blank" rel="noopener">Instagram</a>
-    </div>
+  <!-- only the language switcher is ours now. her nav supplies the astronaut
+       and the animated menu button, and ui.js moves this into it. -->
+  <div class="lang" data-lang-switch role="group" aria-label="Language" hidden>
+    <button type="button" data-lang="en" aria-pressed="true">en</button>
+    <span aria-hidden="true">/</span>
+    <button type="button" data-lang="es" aria-pressed="false">es</button>
+    <span aria-hidden="true">/</span>
+    <button type="button" data-lang="de" aria-pressed="false">de</button>
   </div>
 
   <main class="home">

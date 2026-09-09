@@ -55,45 +55,16 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
 <style>  
   .w-webflow-badge { display: none !important; }
   .transition-w {	display: flex; }
-</style><link href="./custom/custom.css?v=20260909a" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet"/><link rel="preload" href="gl/fonts/Brier-Bold-02.webp" as="image"/><link rel="preload" href="gl/fonts/MonaSans-Bold-02.webp" as="image"/><link rel="preload" href="gl/fonts/Brier-Bold-msdf.json" as="fetch" crossorigin="anonymous"/><link rel="preload" href="gl/fonts/MonaSans-Bold-msdf.json" as="fetch" crossorigin="anonymous"/><link rel="preload" href="gl/textures/head/webp/diffuse.webp" as="image"/><link rel="preload" href="gl/textures/head/webp/depth.webp" as="image"/><link rel="preload" href="gl/textures/helmet/webp/gold/Norris_Helmet_mat_BaseColor.webp" as="image"/><link rel="preload" href="gl/hdri/studio_small_08_1k--dark.hdr" as="fetch" crossorigin="anonymous"/><link rel="stylesheet" href="ui/tokens.css?v=20260909q"/><link rel="stylesheet" href="ui/base.css?v=20260909q"/><link rel="stylesheet" href="ui/layout.css?v=20260909q"/><link rel="stylesheet" href="ui/ui.css?v=20260909q"/></head><body data-edit=""><div id="am-loader" style="position:fixed;inset:0;z-index:99999;background:#08070f;display:flex;align-items:center;justify-content:center;transition:opacity .8s ease"><video src="./custom/loading.mp4" autoplay muted playsinline style="width:min(46vw,360px);max-width:80%;border-radius:14px"></video></div><script>(function(){var m=document.getElementById("am-loader");var v=m.querySelector("video");var ended=false,loaded=false;function maybe(){if(ended&&loaded){m.style.opacity="0";setTimeout(function(){if(m.parentNode)m.parentNode.removeChild(m)},900)}}v.addEventListener("ended",function(){ended=true;maybe()});if(document.readyState==="complete"){loaded=true}else window.addEventListener("load",function(){setTimeout(function(){loaded=true;maybe()},3000)});setTimeout(function(){ended=true;loaded=true;maybe()},15000);})();</script><div class="edge-ui">
+</style><link href="./custom/custom.css?v=20260909a" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet"/><link rel="preload" href="gl/fonts/Brier-Bold-02.webp" as="image"/><link rel="preload" href="gl/fonts/MonaSans-Bold-02.webp" as="image"/><link rel="preload" href="gl/fonts/Brier-Bold-msdf.json" as="fetch" crossorigin="anonymous"/><link rel="preload" href="gl/fonts/MonaSans-Bold-msdf.json" as="fetch" crossorigin="anonymous"/><link rel="preload" href="gl/textures/head/webp/diffuse.webp" as="image"/><link rel="preload" href="gl/textures/head/webp/depth.webp" as="image"/><link rel="preload" href="gl/textures/helmet/webp/gold/Norris_Helmet_mat_BaseColor.webp" as="image"/><link rel="preload" href="gl/hdri/studio_small_08_1k--dark.hdr" as="fetch" crossorigin="anonymous"/><link rel="stylesheet" href="ui/tokens.css?v=20260909s"/><link rel="stylesheet" href="ui/base.css?v=20260909s"/><link rel="stylesheet" href="ui/layout.css?v=20260909s"/><link rel="stylesheet" href="ui/ui.css?v=20260909s"/></head><body data-edit=""><div id="am-loader" style="position:fixed;inset:0;z-index:99999;background:#08070f;display:flex;align-items:center;justify-content:center;transition:opacity .8s ease"><video src="./custom/loading.mp4" autoplay muted playsinline style="width:min(46vw,360px);max-width:80%;border-radius:14px"></video></div><script>(function(){var m=document.getElementById("am-loader");var v=m.querySelector("video");var ended=false,loaded=false;function maybe(){if(ended&&loaded){m.style.opacity="0";setTimeout(function(){if(m.parentNode)m.parentNode.removeChild(m)},900)}}v.addEventListener("ended",function(){ended=true;maybe()});if(document.readyState==="complete"){loaded=true}else window.addEventListener("load",function(){setTimeout(function(){loaded=true;maybe()},3000)});setTimeout(function(){ended=true;loaded=true;maybe()},15000);})();</script><div class="edge-ui">
 
-  <header class="nav edge-nav">
-    <div class="container nav-inner">
-
-      <a class="nav-brand" href="./" aria-label="Andrea Montaña, home">
-        <img src="ui/assets/astronaut.png" alt="" width="34" height="34">
-      </a>
-
-      <div class="nav-right">
-        <div class="lang" role="group" aria-label="Language">
-          <button type="button" data-lang="en" aria-pressed="true">en</button>
-          <span aria-hidden="true">/</span>
-          <button type="button" data-lang="es" aria-pressed="false">es</button>
-          <span aria-hidden="true">/</span>
-          <button type="button" data-lang="de" aria-pressed="false">de</button>
-        </div>
-
-        <button class="nav-menu" type="button" data-menu-button aria-expanded="false" aria-controls="edge-menu">
-          <span class="nav-menu-bars" aria-hidden="true"><i></i><i></i></span>
-          <span data-i18n="nav.menu">menu</span>
-        </button>
-      </div>
-
-    </div>
-  </header>
-
-  <div class="menu-panel" id="edge-menu" data-menu-panel hidden>
-    <nav class="menu-inner" aria-label="Sections">
-      <a data-taxi-ignore href="./online"><span class="menu-index">01</span> <span data-i18n="panel.projects.title">Projects</span></a>
-      <a data-taxi-ignore href="./experience"><span class="menu-index">02</span> <span data-i18n="panel.experience.title">Experience</span></a>
-      <a data-taxi-ignore href="./off-track"><span class="menu-index">03</span> <span data-i18n="panel.offline.title">Offline</span></a>
-      <a data-taxi-ignore href="./about"><span class="menu-index">04</span> <span data-i18n="panel.about.title">About</span></a>
-    </nav>
-    <div class="menu-social">
-      <a href="https://github.com/andreaisabelmontana" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://www.linkedin.com/in/andrea-isabel-montana" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://www.instagram.com/artedelamontana/" target="_blank" rel="noopener">Instagram</a>
-    </div>
+  <!-- only the language switcher is ours now. her nav supplies the astronaut
+       and the animated menu button, and ui.js moves this into it. -->
+  <div class="lang" data-lang-switch role="group" aria-label="Language" hidden>
+    <button type="button" data-lang="en" aria-pressed="true">en</button>
+    <span aria-hidden="true">/</span>
+    <button type="button" data-lang="es" aria-pressed="false">es</button>
+    <span aria-hidden="true">/</span>
+    <button type="button" data-lang="de" aria-pressed="false">de</button>
   </div>
 
   <main class="home">
@@ -169,6 +140,7 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
 
   </main>
 </div>
+
 
 
 <div class="css-main"><div class="css-root w-embed"><style>
@@ -1413,4 +1385,4 @@ stroke="currentColor"/>
 
 
 </script>
-<div class="stars-overlay"></div><script id="helmet-keep-four">window.addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".helmet-grid-item").forEach(function(it,i){if(i>=4){var w=it.closest(".helmet-grid-item-w")||it;w.style.display="none";}});});</script><script defer src="./custom/vendor/three.min.js"></script><script defer src="./custom/experience.js?v=20260811l"></script><script src="ui/reveal.js?v=20260909q" defer></script><script src="ui/menu.js?v=20260909q" defer></script><script src="ui/i18n.js?v=20260909q" defer></script><script src="ui/ui.js?v=20260909q" defer></script></body></html>
+<div class="stars-overlay"></div><script id="helmet-keep-four">window.addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".helmet-grid-item").forEach(function(it,i){if(i>=4){var w=it.closest(".helmet-grid-item-w")||it;w.style.display="none";}});});</script><script defer src="./custom/vendor/three.min.js"></script><script defer src="./custom/experience.js?v=20260811l"></script><script src="ui/reveal.js?v=20260909s" defer></script><script src="ui/i18n.js?v=20260909s" defer></script><script src="ui/ui.js?v=20260909s" defer></script></body></html>
