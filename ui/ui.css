@@ -79,16 +79,39 @@ body.edge-ready .nav-brand canvas {
   object-fit: contain;
 }
 
-/* our languages, set to match her hamburger rather than shrinking beside it */
-body.edge-ready .nav .lang {
+/* the languages sit at the scale of her hamburger, not tucked beside it.
+   not scoped to .edge-ready, because her other pages use this too. */
+.nav .lang {
   margin-left: auto;
-  margin-right: 1.25rem;
-  font-size: 1.02rem;
-  letter-spacing: 0.01em;
+  margin-right: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  /* px, not rem: her stylesheet sets a viewport-relative root font size, so
+     1.35rem resolved to 14px here rather than the ~22px it looks like. */
+  font-size: clamp(17px, 1.35vw, 23px) !important;
+  letter-spacing: 0.02em;
+  color: #7e828d;
 }
 
-body.edge-ready .nav .lang button {
-  font-size: 1.02rem;
+.nav .lang button {
+  background: none;
+  border: 0;
+  padding: 0.2rem;
+  font: inherit;
+  font-size: clamp(17px, 1.35vw, 23px) !important;
+  line-height: 1;
+  color: inherit;
+  cursor: pointer;
+  transition: color 0.25s ease;
+}
+
+.nav .lang button:hover { color: #f4f4ed; }
+.nav .lang button.is-on { color: #bc13fe; font-weight: 600; }
+
+@media (max-width: 639px) {
+  .nav .lang, .nav .lang button { font-size: 16px !important; }
+  .nav .lang { margin-right: 0.9rem; }
 }
 
 body.edge-ready .edge-ui { display: block; }
