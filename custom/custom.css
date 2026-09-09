@@ -1,0 +1,286 @@
+:root { --color--dark-green: #050505; }
+body { background: #000 url(stars.jpg) center / cover no-repeat fixed !important; }
+/* the exe-section visor strip has no positioned ancestor, so it parks as a black bar at the very top of the page */
+.exe-top-visor { display: none !important; }
+/* merch/champion section removed */
+.s.is--exe { display: none !important; }
+/* projects hall of ideas lives on the online page now */
+html[data-wf-page="67b5a02dc5d338960b17a7eb"] .s.home-helmets { display: none !important; }
+/* footer: let the stars run into the purple glow instead of the cream band */
+.s.is-footer { background-color: transparent !important; }
+/* skills: solid black band on the section itself, so it pops off the starfield without swallowing the ON/OFF area */
+.s.is-home-collabs { position: relative; background-color: #050505 !important; }
+/* skills scribble: marker-style SKILLS behind the heading (replaces the rive "Collabs" handwriting) */
+.s.is-home-collabs .home-collab-rive-w { display: none !important; } /* also removes the dead space it added before the footer */
+.s.is-home-collabs .c.is-home-collabs { position: relative; padding-top: 8rem; padding-bottom: 6rem; } /* keep the container's own side padding — zeroing it clipped the heading at the viewport edge */
+.s.is-home-collabs .c.is-home-collabs::before { content: "SKILLS"; position: absolute; top: 1rem; left: 2vw; font-family: 'Permanent Marker', 'Segoe Print', cursive; font-size: 11rem; line-height: 1; color: #BC13FE; transform: rotate(-8deg); z-index: 0; pointer-events: none; }
+.s.is-home-collabs .title-layout { position: relative; z-index: 1; }
+.s.is-home-collabs .spacer { display: none !important; } /* the rive block + tail spacers created the dead space before the footer */
+/* collabs: light text + light logos on the star background */
+.s.is-home-collabs h2, .s.is-home-collabs .text-title-lg-mona, .s.is-home-collabs .text-title-lg-brier, .s.is-home-collabs p, .s.is-home-collabs .char, .s.is-home-collabs .line { color: #f4f4ed !important; }
+.s.is-home-collabs img[src*="collab-"] { filter: none !important; } /* wordmark SVGs are #BC13FE directly */
+/* footer signature removed */
+.footer-rive-w { display: none !important; }
+/* socials card-fan section removed */
+.s.is-callout-socials { display: none !important; }
+.taxi-w.style-guide, .taxi-w.off-track, .utility__switcher--w { background-color: transparent !important; }
+.stars-overlay { position: fixed; inset: 0; background: #000 url(stars.jpg) center / cover no-repeat; z-index: -2; pointer-events: none; }
+.home-hero-next-race-w { display: none !important; }
+.transition-w { background: #BC13FE !important; }
+.transition-rive { display: none !important; }
+.nav-middle, .home-hero-tablet-hero-text, .eyebrow-w.hero-next-race { display: none !important; }
+.marquee-gl-rive-target { display: none !important; }
+.marquee-gl-target-w { position: relative; }
+.andrea-note { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: 1.2rem; padding: 0 8vw; pointer-events: none; z-index: 2; }
+.andrea-note p { text-shadow: 0 2px 22px rgba(0,0,0,0.85), 0 0 10px rgba(0,0,0,0.6); color: #f4f4ed; font-size: 1.6rem; line-height: 1.45; max-width: 34rem; margin: 0; }
+.andrea-note .andrea-note-accent { color: #BC13FE; font-size: 1.2rem; letter-spacing: 0.06em; text-transform: uppercase; }
+.andrea-note { display: none !important; }
+.home-hero-logo-wrap, .impact-icon-w { display: none !important; }
+.s.is-horizontal-track { display: none !important; }
+/* offline page: the horizontal gallery is back in service, filled with her hobby photos */
+.taxi-w.off-track .s.is-horizontal-track { display: block !important; }
+.taxi-w.off-track .horizontal-rive-placeholder { display: none !important; } /* leftover rive doodads */
+.taxi-w.off-track .s.is-horizontal-track :is(.text-eyebrow, .horizontal-item-text, .text-descriptor, h2, .char, .line) { color: #f4f4ed !important; } /* dark-green palette is unreadable on stars */
+.taxi-w.off-track .s.is-horizontal-track :is(h3.text-title-reg-brier, h3.text-title-reg-brier .char, h3.text-title-reg-brier .line) { color: #BC13FE !important; } /* after the cream rule: split-text children must stay purple */
+/* home-marquee-tighten: pull content after the scholar moment up */
+.s.home-marquee, .s.home-marquee .c.is-marquee { height: 58vh !important; min-height: 0 !important; }
+img[src*="ln-home-helm-large"] { display: none !important; } /* source file was scrubbed; hide the broken img */
+/* tighten the impact-statement -> ON/OFF transition (was ~47vh of empty stars) */
+.impact-content-w.is-home { padding-bottom: 0 !important; }
+.otot-home-layout { transform: translateY(-8vh); }
+.sticky-track.is-home-otot { margin-top: -2vh; }
+.s.is-otot-home h2, .s.is-otot-home p, .s.is-otot-home .char, .s.is-otot-home .line { color: #f4f4ed !important; }
+.sticky-track.is-home-otot { height: 185vh !important; }
+.otot-home-text-rive { filter: none; } /* filter lives on the canvas rule below; stacking both turned the scribble green */
+/* otot-final: enlarge in place, nudged inward so nothing clips */
+.otot-home-img-w.is-1 { transform: translateX(5vw) scale(1.5) !important; transform-origin: bottom left !important; }
+.otot-home-img .otot-home-img, .otot-home-img-w .otot-home-img { object-fit: contain; object-position: center bottom; } /* transparent cutouts: never crop */
+.otot-home-img-w.is-2 { transform: translateX(-5vw) scale(1.5) !important; transform-origin: bottom right !important; }
+/* nav menu: dark purple with white letters (was near-black with olive swirls) */
+.nav-menu-w { background-color: #1e0435 !important; color: #fff !important; }
+.nav-menu-bg { background-image: url(blobs-nav-purple.svg) !important; opacity: 0.2; }
+.nav-menu-w :is(a, div, span, h1, h2, h3, p) { color: #fff !important; }
+/* astronaut-logo */
+.nav-brand svg { display: none !important; }
+.nav-brand { background: url(astronaut.png) center / contain no-repeat !important; width: 10rem !important; height: 7.5rem !important; }
+.nav-rive-w canvas { filter: hue-rotate(215deg) saturate(1.05); }
+.nav-ham canvas { filter: sepia(1) saturate(14) hue-rotate(252deg) brightness(0.82) contrast(1.15); }
+canvas[data-rive-file="phrases"] { filter: hue-rotate(235deg) saturate(8) brightness(0.72); } /* lime -> neon purple to match the buttons */
+/* on-track: helmet only */
+.taxi-w.on-track section.s:not(:first-of-type):not(.is-footer) { display: none !important; }
+.taxi-w.on-track .impact-content-w .eyebrow-w, .taxi-w.on-track [class*="f1-highlight"], .taxi-w.on-track .on-t-hero-stats-ui-w { display: none !important; }
+.taxi-w.on-track section.s:has(.on-t-podium-text-layout) { display: none !important; }
+/* projects hall of ideas: shown on the online page, directly below the hero helmet */
+.taxi-w.on-track section.s.home-helmets { display: block !important; }
+.taxi-w.on-track .s.is-on-track-home { height: 88vh !important; min-height: 0 !important; } /* trim hero dead space */
+.taxi-w.on-track .s-group.z-0 > section.s { display: none !important; } /* empty section that hid from the first-of-type rule (the hero is a div) */
+.taxi-w.on-track .s.home-helmets .spacer { display: none !important; } /* no gap between title and cards */
+.taxi-w.on-track .s.home-helmets .c.home-helmets { padding-top: 2rem !important; }
+.taxi-w.on-track .s.home-helmets .char, .taxi-w.on-track .s.home-helmets .line, .taxi-w.on-track .s.home-helmets h2, .taxi-w.on-track .s.home-helmets p { opacity: 1 !important; transform: none !important; visibility: visible !important; }
+.taxi-w.on-track .s.home-helmets .line { clip-path: none !important; }
+.taxi-w.on-track .s.home-helmets .high-line-reveal { display: none !important; }
+.helmet-grid-extender-img { display: none !important; } /* extender art was scrubbed */
+.helmet-grid-item-reveal-img { width: 100%; height: 100%; object-fit: cover; } /* hover reveal: generated project cards */
+.helm-card-link { position: absolute; inset: 0; z-index: 6; } /* whole card opens the project */
+.helmet-grid-item-img-w.video-embed iframe { width: 88%; aspect-ratio: 16 / 9; border: 0; border-radius: 6px; } /* wrapper is flex-centered, card is square */
+.helmet-grid-item-img-helmet { position: absolute; inset: 0; width: 100% !important; height: 100% !important; object-fit: cover !important; border-radius: 10px; } /* card thumb = screenshot of the linked project */
+.helmet-grid-item { overflow: hidden; border-radius: 10px; } /* contain the hover zoom */
+.helmet-grid-item-reveal-img { border-radius: 10px; }
+/* home page: callout + projects section live on the online page instead */
+html[data-wf-page="67b5a02dc5d338960b17a7eb"] section.s:has(.c.is-callout) { display: none !important; }
+.transition-btn { display: none !important; }
+.taxi-w.on-track .on-t-hero-info-grid { display: none !important; }
+.taxi-w.on-track .on-track-impact-text-w { transform: translateY(-14vh); }
+.taxi-w.off-track img[src*="signature"], .taxi-w.off-track .signature-rive, .taxi-w.off-track canvas[data-rive-file="signature"] { display: none !important; }
+/* offline page: white hero, no company marquee, and no stuck reveal states */
+.text-on-t-hero-heading.is-off-t { color: #f4f4ed !important; }
+.taxi-w.off-track .marquee-offest-w { display: none !important; }
+.taxi-w.off-track .char, .taxi-w.off-track .line, .taxi-w.off-track h2, .taxi-w.off-track p, .taxi-w.off-track .text-impact-lg-mona, .taxi-w.off-track .text-eyebrow { opacity: 1 !important; transform: none !important; visibility: visible !important; }
+.taxi-w.off-track .line { clip-path: none !important; } /* split-text leaves lines clipped when the reveal never fires */
+.taxi-w.off-track .text-impact-lg-mona { color: #fff !important; } /* base statement text was near-black on the stars */
+/* offline hero copy block: white + purple, and no dead space */
+.taxi-w.off-track .off-t-hero-stats-layout .text-eyebrow { color: #BC13FE !important; }
+.taxi-w.off-track h2.text-body-lg-mona { color: #fff !important; }
+.taxi-w.off-track h2.text-body-lg-mona :is(span.text-body-lg-brier, span.text-body-lg-brier .char, span.text-body-lg-brier .line) { color: #BC13FE !important; }
+.taxi-w.off-track p.text-body-sm-mona { color: #f4f4ed !important; }
+.taxi-w.off-track .off-t-hero-img-slot { display: none !important; } /* empty scrubbed hero-flip slot held a 570px grid row */
+.taxi-w.off-track .off-t-hero-stats-w .spacer { display: none !important; }
+.taxi-w.off-track .off-t-hero-scroll-meda-img { display: none !important; } /* orphaned flip-effect feed images pile over the heading */
+.taxi-w.off-track .off-t-hero-img, .taxi-w.off-track .hero-img-layer { display: none !important; } /* the JS photo-flip widget paints layers over the heading */
+.taxi-w.off-track .off-t-hero-sub-para-w { margin-top: -3.5rem; } /* pull the paragraph up to its heading */
+.taxi-w.off-track .off-t-hero-sub-para-mw { grid-area: 1 / 1 / 2 / 2 !important; max-width: 26rem; } /* align under the heading instead of dangling mid-page */
+.taxi-w.off-track .s.is-on-track-home { height: 88vh !important; min-height: 0 !important; } /* trim the hero band */
+.taxi-w.off-track .text-impact-lg-mona strong, .taxi-w.off-track .text-impact-lg-mona strong .char { color: #BC13FE !important; }
+.taxi-w.off-track .high-line-reveal { display: none !important; } /* the stuck purple wipe bars */
+/* footer logo marquee: wordmark SVGs are #BC13FE directly — no filter, exact brand purple */
+/* footer text must never depend on scroll-reveal state: keep it visible on every page */
+.s.is-footer .char, .s.is-footer .line, .s.is-footer .btn-text, .s.is-footer h2 { opacity: 1 !important; transform: none !important; visibility: visible !important; }
+.s.is-footer .line { clip-path: none !important; } /* split-text leaves lines clipped when the reveal never fires */
+.s.is-footer .high-line-reveal { display: none !important; } /* reveal wipe bars, pointless without the animation */
+/* footer centre: helmet-person cutout, kept fully in frame */
+.footer-bg-img { object-fit: contain !important; object-position: center bottom !important; }
+/* footer statement ("Computer Science and AI") is position:absolute + full-width flex, so its empty side margins sit on top of and swallow clicks on footer-links-w beneath it; it has no interactive content of its own */
+.footer-statement-w { pointer-events: none !important; }
+/* callout + nav menu: floating astronaut instead of the helmet-with-laurels animation */
+.callout-rive-w .callout-icon canvas, .callout-rive-w .callout-icon svg { visibility: hidden !important; }
+.callout-rive-w { background: url(astronaut.png) center / contain no-repeat !important; }
+.base-helmet-rive canvas, .base-helmet-rive svg { visibility: hidden !important; }
+.base-helmet-rive { background: url(astronaut.png) center / contain no-repeat !important; }
+/* off-track hero: intro copy centered directly under the OFFLINE title */
+.taxi-w.off-track .off-t-hero-stats-grid.grid-main { display: block; max-width: 42rem; margin: 2.5rem auto 0; text-align: center; }
+.taxi-w.off-track .off-t-hero-stats-layout { display: block; }
+.taxi-w.off-track .off-t-hero-stats-layout .eyebrow-w { justify-content: center; }
+.taxi-w.off-track .off-t-hero-sub-para-w.grid-main { display: block; max-width: 34rem; margin: 1.25rem auto 0; text-align: center; }
+.taxi-w.off-track .off-t-hero-sub-para-mw { max-width: 34rem; margin: 0 auto; }
+/* off-track track: show the Madrid winter-walks photo uncropped; contain beats the frame's fixed height */
+.taxi-w.off-track .horizontal-item-img-w.is-offt6 img[src*="hb-madrid"] { object-fit: contain; object-position: center; }
+/* home: trim the hero track's empty scroll runway - the pinned scene only fills the top, the rest was dead starfield before ON/OFFLINE arrives */
+.sticky-track.home-hero { height: 112vh; }
+/* off-track hero: intro copy slightly larger */
+.taxi-w.off-track .off-t-hero-stats-layout .text-body-lg-mona { font-size: 2.75rem; }
+.taxi-w.off-track .off-t-hero-sub-para-mw .text-body-sm-mona { font-size: 1.2rem; }
+.taxi-w.off-track .off-t-hero-stats-grid.grid-main { max-width: 48rem; }
+.taxi-w.off-track .off-t-hero-sub-para-w.grid-main, .taxi-w.off-track .off-t-hero-sub-para-mw { max-width: 40rem; }
+
+
+/* ---------- 2026-08-11 additions ---------- */
+
+/* Hero name above the head */
+.am-hero-name {
+  position: absolute; top: 2.7rem; left: 0; right: 0; z-index: 3;
+  text-align: center; pointer-events: none;
+  font-family: inherit; font-weight: 700;
+  font-size: clamp(1.5rem, 2.95vw, 2.95rem);
+  letter-spacing: 0.42em; text-indent: 0.42em;
+  color: #f5f0e8;
+}
+
+/* Instant marquee text, fades once the GL text is up */
+.am-marquee-fallback {
+  position: absolute; top: 0; left: 0; width: 100%; z-index: 2;
+  overflow: hidden; white-space: nowrap; pointer-events: none;
+  opacity: 0.92; transition: opacity 0.9s ease;
+  font-weight: 700; font-size: clamp(3rem, 7.5vw, 7rem);
+  color: #ece7da; line-height: 1.15;
+}
+.am-marquee-fallback.is-done { opacity: 0; }
+.am-marquee-fallback span { display: inline-block; padding-right: 2rem;
+  animation: am-marquee-slide 22s linear infinite; }
+@keyframes am-marquee-slide { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+
+/* Experience globe section */
+.s.am-exp { position: relative; padding: 4rem 0 1.5rem; }
+.c.am-exp { max-width: 72rem; margin: 0 auto; padding: 0 2rem; }
+.am-exp-head { display: flex; align-items: end; justify-content: space-between;
+  gap: 2rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+.am-exp-title { font-size: clamp(2.6rem, 6vw, 5rem); line-height: 0.95;
+  color: #f5f0e8; margin: 0; }
+.am-exp-sub { color: #b9b3c6; max-width: 22rem; margin: 0; }
+.am-exp-layout { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 3rem; align-items: center; }
+@media (max-width: 820px) { .am-exp-layout { grid-template-columns: 1fr; } }
+.am-exp-globe-w { position: relative; }
+#am-globe { width: 100%; height: auto; display: block; cursor: grab; touch-action: none; }
+#am-globe:active { cursor: grabbing; }
+.am-exp-timeline { list-style: none; margin: 0; padding: 0; display: flex;
+  flex-direction: column; gap: 1rem; }
+.am-exp-timeline li { border: 1px solid rgba(245,240,232,0.22); border-radius: 12px;
+  padding: 1rem 1.2rem; cursor: pointer; display: grid; gap: 0.2rem;
+  transition: border-color 0.25s ease, background 0.25s ease; }
+.am-exp-timeline li:hover { border-color: rgba(191,64,255,0.7); }
+.am-exp-timeline li.is-active { border-color: #bf40ff; background: rgba(191,64,255,0.08); }
+.am-exp-year { color: #bf40ff; font-weight: 700; letter-spacing: 0.12em; font-size: 0.85rem; }
+.am-exp-role { color: #f5f0e8; font-weight: 600; }
+.am-exp-place { color: #b9b3c6; font-size: 0.9rem; }
+.am-exp-chip { justify-self: start; margin-top: 0.3rem; font-size: 0.62rem; font-weight: 700;
+  letter-spacing: 0.14em; color: #12101c; background: #bf40ff; border-radius: 999px;
+  padding: 0.18rem 0.55rem; }
+
+/* Skills section now lives on the online page */
+body .main-w .taxi-w.on-track section.s.is-home-collabs { display: block !important; }
+body .taxi-w.on-track .s.is-home-collabs .char, body .taxi-w.on-track .s.is-home-collabs .line,
+body .taxi-w.on-track .s.is-home-collabs h2, body .taxi-w.on-track .s.is-home-collabs p {
+  opacity: 1 !important; transform: none !important; visibility: visible !important; }
+.taxi-w.on-track .s.is-home-collabs .line { clip-path: none !important; }
+
+/* Warp starfield behind the quote (off-track) */
+.s.am-quote { position: relative; overflow: hidden; }
+.am-warp { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+.s.am-quote > *:not(.am-warp) { position: relative; z-index: 1; }
+
+/* Orbiting Earth before the footer */
+.s.am-earth-s { position: relative; overflow: hidden; padding: 0; line-height: 0; margin-top: -11.5rem; z-index: 0; }
+#am-earth { display: block; width: 100%; height: auto; }
+
+/* Journey list: star bullet timeline, no boxes */
+.am-exp-timeline { gap: 1.4rem; }
+.am-exp-timeline li { border: 1px solid rgba(245,240,232,0.18) !important;
+  background: rgba(245,240,232,0.09) !important; backdrop-filter: blur(4px);
+  border-radius: 14px; padding: 0.95rem 1.2rem 0.95rem 2.9rem; position: relative;
+  display: grid; gap: 0.28rem; transition: background 0.25s ease, border-color 0.25s ease; }
+.am-exp-timeline li:hover, .am-exp-timeline li.is-active {
+  background: rgba(245,240,232,0.14) !important; border-color: rgba(191,64,255,0.75) !important; }
+.am-exp-timeline li::before { content: '✦'; position: absolute; left: 1.05rem; top: 1rem;
+  color: #f5f0e8; font-size: 1.15rem; line-height: 1; transition: color 0.25s ease, text-shadow 0.25s ease; }
+.am-exp-timeline li:hover::before, .am-exp-timeline li.is-active::before {
+  color: #bf40ff; text-shadow: 0 0 12px rgba(191,64,255,0.9); }
+.am-exp-line1 { color: #f5f0e8; font-weight: 700; letter-spacing: 0.07em;
+  font-size: 1.02rem; transition: color 0.25s ease; }
+.am-exp-timeline li.is-active .am-exp-line1 { color: #d9a8ff; }
+.am-exp-line2 { color: #cfc8e0; font-size: 0.92rem; }
+
+.am-exp-line3 { color: #9c95b3; font-size: 0.82rem; letter-spacing: 0.04em; }
+
+/* Purple menu button */
+.nav-ham { background: #a821e6 !important; border-color: #a821e6 !important; border-radius: 12px; }
+
+/* Photoreal earth: soft dissolve into the footer boundary */
+#am-earth { -webkit-mask-image: linear-gradient(to bottom, #000 88%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 88%, transparent 100%); }
+/* close the starfield gap between the earth and the footer's dark-green clipped panel */
+.s.is-footer > .spacer._14rem { height: 0; }
+
+/* Footer statement ("Computer Science and AI") sits at the very bottom of a long, Lenis-smoothed
+   scroll, so the shared data-anim-high scroll-triggered line wipe visibly lags behind arrival;
+   skip the wipe and keep it always shown */
+.footer-statement-layout h2 .line { clip-path: none !important; }
+.footer-statement-layout h2 .high-line-reveal { display: none !important; }
+
+/* Gallery button living in the OFF LINE column */
+.am-gallery-off { margin-left: 0.9rem; vertical-align: middle; }
+
+/* Offline hero: text left, big gallery button right */
+.off-t-hero-stats-layout { display: flex; align-items: center; justify-content: space-between;
+  gap: 2.5rem; flex-wrap: wrap; }
+.am-off-left { text-align: left; flex: 1 1 24rem; }
+.am-off-left .text-body-lg-mona, .am-off-left .text-eyebrow { text-align: left; }
+.am-gallery-big { background: #a821e6; border-radius: 18px; padding: 1.5rem 2.8rem;
+  display: inline-flex; align-items: center; gap: 1rem; font-weight: 700;
+  font-size: 1.6rem; letter-spacing: 0.04em; color: #0b0a14; text-decoration: none;
+  flex: 0 0 auto; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.am-gallery-big:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(168,33,230,0.5); }
+.am-gallery-big img { width: 2.2rem; height: 2.2rem; object-fit: contain; }
+
+/* hall of ideas filter row: the cards are static html, so filtering only adds
+   .edge-hidden to a card wrapper. keeping it to display:none means the css
+   hover reveal never has to know the filter exists. */
+.edge-hidden { display: none !important; }
+.edge-filter { display: flex; flex-direction: column; gap: 0.9rem;
+  margin: 0 0 3.25rem; }
+.edge-filter-row { display: flex; align-items: center; flex-wrap: wrap;
+  gap: 0.5rem; }
+.edge-filter-label { font-family: inherit; font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 0.22em; color: #BC13FE; min-width: 5.5rem; }
+.edge-filter-pill { background: rgba(244,244,237,0.05); color: #cfd2d8;
+  border: 1px solid rgba(244,244,237,0.18); border-radius: 999px;
+  padding: 0.4rem 0.95rem; font: inherit; font-size: 0.78rem; letter-spacing: 0.02em;
+  cursor: pointer; transition: background 0.2s ease, color 0.2s ease,
+  border-color 0.2s ease; }
+.edge-filter-pill:hover { border-color: rgba(188,19,254,0.6); color: #f4f4ed; }
+.edge-filter-pill.is-on { background: #BC13FE; border-color: #BC13FE;
+  color: #0b0a14; font-weight: 600; }
+.edge-filter-count { font-size: 0.72rem; letter-spacing: 0.18em;
+  color: rgba(244,244,237,0.5); text-transform: uppercase; }
+@media (max-width: 767px) {
+  .edge-filter-label { min-width: 100%; }
+}
