@@ -209,17 +209,19 @@ body.edge-ready .hero-inner { position: relative; z-index: 1; }
 }
 
 /* her footer is kept: it already carries the contact link and the socials */
+/* the footer sits under our content, not over it. it used to carry z-index 6
+   against .edge-ui's 5, which let its marquee paint across the cards. */
 body.edge-ready .s.is-footer {
   display: block !important;
   position: relative;
-  z-index: 6;
+  z-index: 1 !important;
 }
 
 /* ---- our shell ---- */
 
 .edge-ui {
   position: relative;
-  z-index: 5;
+  z-index: 10;
 }
 
 /* the head is the full-bleed backdrop, so the slot paints nothing. it only

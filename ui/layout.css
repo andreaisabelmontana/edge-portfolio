@@ -390,14 +390,16 @@
   padding: 2rem 1.75rem 0;
   overflow: hidden;
   border-radius: 1rem;
-  background: rgba(10, 10, 16, 0.55);
+  /* opaque enough to hold its own against the starfield and anything passing
+     behind it, rather than letting the background read through the copy */
+  background: rgba(8, 8, 12, 0.93);
   border: 1px solid var(--line);
   transition: border-color 0.5s var(--ease-out), background 0.5s var(--ease-out);
 }
 
 .otot-card:hover {
   border-color: var(--edge-line);
-  background: rgba(14, 10, 22, 0.7);
+  background: rgba(14, 10, 22, 0.96);
 }
 
 .otot-card-text {

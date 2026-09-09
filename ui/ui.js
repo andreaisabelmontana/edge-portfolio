@@ -91,7 +91,16 @@
        can be solved from where her centre should end up. */
     const k = HEAD_K;
     const tx = HEAD_X * vw - k * (vw / 2);
-    const ty = HEAD_Y * vh - k * (vh / 2);
+
+    /* the canvas is scaled down, so its painted area is smaller than the
+       viewport and its top edge sat below the bar, leaving a strip of bare
+       background where the starfield and the line art just stopped.
+
+       clamping the translate to the bar's height pins that top edge under the
+       bar, so the area always reaches it however the three constants are
+       tuned. */
+    const NAV_H = 76;
+    const ty = Math.min(HEAD_Y * vh - k * (vh / 2), NAV_H);
 
     wrap.style.transformOrigin = '0 0';
     wrap.style.transform = `translate(${tx}px, ${ty}px) scale(${k})`;
@@ -185,8 +194,19 @@
     adoptNav();
     frameHead();
     armPointerCorrection();
+    /* her scroll-triggered animations cache their start positions at init, and
+       this restructure changes the document height afterwards, so those
+       positions are stale and the highlight sweeps fire before the cards are
+       ever on screen. gsap is not exposed globally here, but ScrollTrigger
+       refreshes on resize, so a few nudges after the layout settles put the
+       triggers back where the content actually is. */
     window.dispatchEvent(new Event('resize'));
-    setTimeout(fit, 400);
+    [400, 900, 1600].forEach((d) =>
+      setTimeout(() => {
+        fit();
+        window.dispatchEvent(new Event('resize'));
+      }, d),
+    );
     addEventListener('scroll', fit, { passive: true });
     addEventListener('resize', fit);
   }
