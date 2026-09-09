@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Andrea Montana | CS &amp; AI Student, Interactive Engineer</title>
+<meta name="description" content="Personal site and CS portfolio of Andrea Montana, a Computer Science and Artificial Intelligence student at IE University working on interactive 3D, computer vision and the web.">
+
+<meta property="og:title" content="Andrea Montana | CS &amp; AI Student, Interactive Engineer">
+<meta property="og:description" content="Computer Science and AI at IE University. Interactive 3D, computer vision and the web.">
+<meta property="og:type" content="website">
+
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/home.css">
+</head>
+
+<body>
+<canvas class="backdrop" data-starfield aria-hidden="true"></canvas>
+
+<div class="page">
+
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="nav-brand" href="./">Andrea Montana</a>
+      <nav class="nav-links" aria-label="Main">
+        <a href="projects/">Projects</a>
+        <a href="experience/">Experience</a>
+        <a href="offline/">Offline</a>
+        <a class="is-cv" href="cv/">CV</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="home">
+
+    <section class="hero">
+      <div class="container hero-inner">
+
+        <div class="hero-copy">
+          <p class="eyebrow" data-reveal="0">CS &amp; AI, IE University &middot; Madrid, Spain</p>
+
+          <h1 class="display" data-reveal="60">Andrea Montana</h1>
+
+          <p class="lead" data-reveal="120">
+            I design at the edge where digital intelligence meets the physical world.
+          </p>
+
+          <p class="facts" data-reveal="120">
+            CS &amp; AI @ IE University &middot; previously Trinity College Dublin &middot;
+            student-athlete &middot; interactive 3D, computer vision and the web
+          </p>
+
+          <p class="status" data-reveal="180">
+            <span class="status-dot" aria-hidden="true"></span>
+            Graduating 2027 &middot; open to internships
+          </p>
+
+          <div class="hero-links" data-reveal="240">
+            <a class="arrow-link" href="projects/">See the work <span aria-hidden="true">&rarr;</span></a>
+            <a class="arrow-link" href="cv/">CV <span aria-hidden="true">&rarr;</span></a>
+            <a class="arrow-link" href="https://github.com/andreaisabelmontana" target="_blank" rel="noopener">GitHub <span aria-hidden="true">&#8599;</span></a>
+            <a class="arrow-link" href="https://www.linkedin.com/in/andrea-isabel-montana" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">&#8599;</span></a>
+          </div>
+        </div>
+
+        <!-- the stack she actually builds with. rendered once here on desktop
+             and once after the panels on mobile, never both at the same time. -->
+        <div class="cloud cloud-beside" data-reveal="100" aria-hidden="true">
+          <div class="cloud-ring"></div>
+          <div class="cloud-ring"></div>
+          <div class="cloud-ring"></div>
+          <div class="cloud-orbit">
+            <div class="cloud-spin">
+              <div class="cloud-mark" style="--a:0deg;   --r:6rem"><img src="assets/logos/collab-threejs.svg" alt=""></div>
+              <div class="cloud-mark" style="--a:72deg;  --r:6rem"><img src="assets/logos/collab-react.svg" alt=""></div>
+              <div class="cloud-mark" style="--a:144deg; --r:6rem"><img src="assets/logos/collab-python.svg" alt=""></div>
+              <div class="cloud-mark" style="--a:216deg; --r:6rem"><img src="assets/logos/collab-docker.svg" alt=""></div>
+              <div class="cloud-mark" style="--a:288deg; --r:6rem"><img src="assets/logos/collab-github.svg" alt=""></div>
+            </div>
+          </div>
+          <p class="cloud-core">Built<br>with</p>
+        </div>
+
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <div class="container panels-wrap">
+      <div class="panels">
+
+        <a class="panel is-lit" href="projects/" data-reveal="0">
+          <div class="panel-grid" aria-hidden="true"></div>
+          <svg class="panel-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <div class="panel-text">
+            <h2 class="panel-title">Projects</h2>
+            <p class="panel-desc">Interactive 3D, maps and storefronts, filterable by what they are made of.</p>
+          </div>
+        </a>
+
+        <a class="panel" href="experience/" data-reveal="70">
+          <img class="panel-bg" src="assets/panels/experience.webp" alt="" loading="lazy">
+          <div class="panel-scrim" aria-hidden="true"></div>
+          <svg class="panel-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <div class="panel-text">
+            <h2 class="panel-title">Experience</h2>
+            <p class="panel-desc">Studies and work, mapped to where they happened.</p>
+          </div>
+        </a>
+
+        <a class="panel" href="offline/" data-reveal="140">
+          <img class="panel-bg" src="assets/panels/offline.webp" alt="" loading="lazy">
+          <div class="panel-scrim" aria-hidden="true"></div>
+          <svg class="panel-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <div class="panel-text">
+            <h2 class="panel-title">Offline</h2>
+            <p class="panel-desc">Life away from the screen.</p>
+          </div>
+        </a>
+
+        <a class="panel" href="about/" data-reveal="210">
+          <img class="panel-bg" src="assets/panels/about.webp" alt="" loading="lazy">
+          <div class="panel-scrim" aria-hidden="true"></div>
+          <svg class="panel-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <div class="panel-text">
+            <h2 class="panel-title">About</h2>
+            <p class="panel-desc">Bogota to Dublin to Madrid, and what I am building toward.</p>
+          </div>
+        </a>
+
+      </div>
+
+      <div class="cloud-below">
+        <div class="cloud" aria-hidden="true">
+          <div class="cloud-ring"></div>
+          <div class="cloud-ring"></div>
+          <div class="cloud-ring"></div>
+          <div class="cloud-orbit">
+            <div class="cloud-spin">
+              <div class="cloud-mark" style="--a:0deg;   --r:4.9rem"><img src="assets/logos/collab-threejs.svg" alt=""></div>
+              <div class="cloud-mark" style="--a:72deg;  --r:4.9rem"><img src="assets/logos/collab-react.svg" alt=""></div>
+              <div class="cloud-mark" style="--a:144deg; --r:4.9rem"><img src="assets/logos/collab-python.svg" alt=""></div>
+              <div class="cloud-mark" style="--a:216deg; --r:4.9rem"><img src="assets/logos/collab-docker.svg" alt=""></div>
+              <div class="cloud-mark" style="--a:288deg; --r:4.9rem"><img src="assets/logos/collab-github.svg" alt=""></div>
+            </div>
+          </div>
+          <p class="cloud-core">Built<br>with</p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script src="js/starfield.js" defer></script>
+<script src="js/reveal.js" defer></script>
+</body>
+</html>

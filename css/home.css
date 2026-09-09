@@ -1,0 +1,352 @@
+/* the landing.
+
+   desktop reads as one viewport: nav, hero band with the stack cloud beside
+   it, a rule, then four panels filling whatever height is left. mobile drops
+   to a single column and the cloud moves below the panels, so the vertical
+   read stays hero -> panels -> cloud. */
+
+/* ---- nav ---- */
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+  backdrop-filter: blur(14px);
+  background: rgba(5, 5, 5, 0.72);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.nav-brand {
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.9rem, 2.2vw, 1.9rem);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-muted);
+}
+
+.nav-links a {
+  position: relative;
+  padding-block: 0.35rem;
+  transition: color 0.3s var(--ease-out);
+}
+
+.nav-links a:hover { color: var(--ink); }
+
+.nav-links a.is-cv {
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  padding: 0.35rem 0.9rem;
+}
+
+.nav-links a.is-cv:hover {
+  border-color: var(--edge);
+  color: var(--edge);
+}
+
+/* ---- hero ---- */
+
+.home {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero {
+  padding-block: clamp(2.25rem, 5vw, 3.5rem);
+}
+
+.hero-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2.5rem;
+}
+
+.hero-copy > * + * { margin-top: 1.15rem; }
+.hero-copy .facts { margin-top: 0.8rem; }
+.hero-copy .status { margin-top: 1.75rem; }
+
+.hero-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.85rem 1.75rem;
+  margin-top: 1.5rem;
+}
+
+/* ---- stack cloud ----
+   the logos she actually builds with, orbiting slowly. it plays the same role
+   as a credentials strip without claiming an affiliation she does not have. */
+
+.cloud {
+  --size: clamp(13rem, 34vw, 19rem);
+  position: relative;
+  width: var(--size);
+  height: var(--size);
+  flex: none;
+  align-self: center;
+}
+
+.cloud-ring {
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+}
+
+.cloud-ring:nth-child(2) { inset: 14%; opacity: 0.6; }
+.cloud-ring:nth-child(3) { inset: 28%; opacity: 0.35; }
+
+/* the two spinners are zero-size pivots at the centre, not full-bleed squares.
+   a rotated 304px square reports a bounding box up to 304 * sqrt(2) wide, which
+   pushed a horizontal scrollbar onto the whole page. a 0x0 point rotates to
+   nothing, so only the pills themselves take up room. */
+.cloud-orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  animation: orbit 44s linear infinite;
+}
+
+/* her logo files are wordmarks (svg <text>, not glyphs), so each mark is a
+   pill sized to the word rather than a round icon badge. the trailing
+   translate(-50%,-50%) runs in the pill's own space after the counter-spin,
+   which centres a variable-width pill on its orbit point. */
+.cloud-mark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(13, 13, 19, 0.92);
+  white-space: nowrap;
+  transform: rotate(var(--a)) translate(var(--r)) rotate(calc(-1 * var(--a)))
+    translate(-50%, -50%);
+  transition: border-color 0.35s var(--ease-out);
+}
+
+/* max-width:none overrides the global img reset. the pivots above are 0 wide,
+   so a percentage max-width would resolve against nothing and collapse the
+   wordmark to zero. width comes from the height and the svg's own ratio. */
+.cloud-mark img {
+  height: 0.82rem;
+  width: auto;
+  max-width: none;
+  opacity: 0.85;
+}
+
+/* counter-spin each mark so the logos stay upright while the ring turns */
+.cloud-spin {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  animation: orbit 44s linear infinite reverse;
+}
+
+.cloud-core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  text-align: center;
+}
+
+@keyframes orbit {
+  to { transform: rotate(360deg); }
+}
+
+/* ---- panels ---- */
+
+.panels-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-top: 1.25rem;
+}
+
+.panels {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  flex: 1;
+  padding-bottom: 1.5rem;
+}
+
+.panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 9rem;
+  padding: 1.25rem;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: var(--void-raised);
+  box-shadow: var(--shadow-rest);
+  transition: transform 0.5s var(--ease-spring), box-shadow 0.5s var(--ease-out),
+    border-color 0.5s var(--ease-out);
+}
+
+/* the first panel sits pre-lit so the row never reads as empty before the
+   first hover */
+.panel.is-lit {
+  border-color: var(--line-strong);
+  box-shadow: var(--shadow-lift);
+}
+
+.panel:hover {
+  border-color: var(--edge-line);
+  box-shadow: var(--shadow-lift);
+  transform: perspective(1100px) rotateX(3deg) translateY(-8px);
+}
+
+.panel-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.18;
+  filter: saturate(0);
+  transition: opacity 0.7s var(--ease-out), filter 0.7s var(--ease-out),
+    transform 0.7s var(--ease-out);
+}
+
+.panel.is-lit .panel-bg { opacity: 0.42; filter: saturate(1); }
+
+.panel:hover .panel-bg {
+  opacity: 0.55;
+  filter: saturate(1);
+  transform: scale(1.05);
+}
+
+/* keeps the type legible once the photo comes up */
+.panel-scrim {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 70%;
+  background: linear-gradient(to top, var(--void-raised), rgba(13, 13, 19, 0.7) 45%, transparent);
+}
+
+/* panels without a photo get a plotted grid instead of a stock image */
+.panel-grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.5;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 2.2rem 2.2rem;
+  mask-image: radial-gradient(circle at 70% 20%, #000 0%, transparent 72%);
+}
+
+.panel-arrow {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
+  color: var(--ink);
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.4s var(--ease-spring), transform 0.4s var(--ease-spring);
+}
+
+.panel:hover .panel-arrow { opacity: 1; transform: translateX(0); }
+
+.panel-text { position: relative; z-index: 2; }
+
+.panel-title {
+  font-size: 1.3rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  transition: transform 0.5s var(--ease-spring);
+}
+
+.panel:hover .panel-title { transform: translateY(-2px); }
+
+.panel-desc {
+  margin-top: 0.3rem;
+  font-size: 0.83rem;
+  color: var(--ink-muted);
+  opacity: 0.75;
+  transition: opacity 0.4s var(--ease-out);
+}
+
+.panel.is-lit .panel-desc,
+.panel:hover .panel-desc { opacity: 1; }
+
+/* ---- responsive ---- */
+
+@media (min-width: 640px) {
+  .panels { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+}
+
+@media (min-width: 1024px) {
+  .home { min-height: calc(100dvh - var(--nav-height)); }
+  .hero-inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4rem;
+  }
+  .cloud { align-self: auto; }
+  .panels { grid-template-columns: repeat(4, 1fr); }
+  .cloud-below { display: none; }
+}
+
+/* the brand plus four links does not fit a 375px bar without shrinking the
+   type past readable. the four panels sitting directly below are the same four
+   destinations, so on phones the bar keeps only the brand and the cv pill
+   rather than growing a hamburger for links the page already shows. */
+@media (max-width: 639px) {
+  .nav-links a:not(.is-cv) { display: none; }
+}
+
+/* below 1024 the cloud is rendered once, after the panels */
+@media (max-width: 1023px) {
+  .cloud-beside { display: none; }
+  .cloud-below {
+    display: flex;
+    justify-content: center;
+    padding: 2rem 0 2.5rem;
+    border-top: 1px solid var(--line);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cloud-orbit,
+  .cloud-spin { animation: none; }
+  .panel:hover { transform: none; }
+}
