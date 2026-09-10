@@ -9,16 +9,21 @@
 var AM_LAND_RINGS = (window.__SITE_ROOT || '') + '/custom/land-rings.json';
 
 (function () {
+  /* the pins are cities, not qualifications.
+
+     they used to repeat one degree each, which now reads as a duplicate of the
+     education section directly below the globe. a place with everything that
+     happened there says something the list underneath does not. */
   var ENTRIES = [
-    { year: '2010 to 2022', title: 'Student', org: 'Colegio Nueva Granada',
-      degree: 'American AP diploma + Bachiller Colombiano',
-      place: 'Bogota, Colombia', lat: 4.652, lon: -74.055 },
-    { year: '2022 to 2023', title: 'Student', org: 'Trinity College Dublin',
-      degree: 'Bachelor of Computer Science (transferred to IE University)',
-      place: 'Dublin, Ireland', lat: 53.3438, lon: -6.2546 },
-    { year: '2023 to present', title: 'Student', org: 'IE University',
-      degree: 'Bachelor of Computer Science and Artificial Intelligence',
-      place: 'Madrid, Spain', lat: 40.4168, lon: -3.7038 }
+    { head: 'Bogota, Colombia',
+      detail: 'Colegio Nueva Granada, and the digital presence for Top Living Inmobiliaria',
+      when: '2010 to 2024', lat: 4.652, lon: -74.055 },
+    { head: 'Dublin, Ireland',
+      detail: 'Trinity College Dublin, first year of the degree',
+      when: '2022 to 2023', lat: 53.3438, lon: -6.2546 },
+    { head: 'Madrid, Spain',
+      detail: 'IE University, IEX Labs research and the Google Developer Group',
+      when: '2023 to present', lat: 40.4168, lon: -3.7038 }
   ];
 
   var canvas = document.getElementById('am-globe');
@@ -145,9 +150,9 @@ var AM_LAND_RINGS = (window.__SITE_ROOT || '') + '/custom/land-rings.json';
     (function (i) {
       var en = ENTRIES[i];
       var li = document.createElement('li');
-      li.innerHTML = '<span class="am-exp-line1 text-body-reg-mona">' + (en.title + ' · ' + en.org).toUpperCase() + '</span>' +
-        '<span class="am-exp-line2 text-body-reg-mona">' + en.degree + '</span>' +
-        '<span class="am-exp-line3 text-body-reg-mona">' + en.place + ' · ' + en.year + '</span>';
+      li.innerHTML = '<span class="am-exp-line1 text-body-reg-mona">' + en.head.toUpperCase() + '</span>' +
+        '<span class="am-exp-line2 text-body-reg-mona">' + en.detail + '</span>' +
+        '<span class="am-exp-line3 text-body-reg-mona">' + en.when + '</span>';
       li.addEventListener('click', function () { goTo(i); });
       list.appendChild(li);
     })(i);

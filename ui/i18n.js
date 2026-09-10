@@ -131,24 +131,128 @@
       es: 'Mi registro de experiencia: estudios y trabajo, situados donde ocurrieron.',
       de: 'Mein Erfahrungsprotokoll: Studium und Arbeit, verortet wo sie stattfanden.',
     },
-    'STUDENT · COLEGIO NUEVA GRANADA': { es: 'ESTUDIANTE · COLEGIO NUEVA GRANADA', de: 'STUDENTIN · COLEGIO NUEVA GRANADA' },
-    'STUDENT · TRINITY COLLEGE DUBLIN': { es: 'ESTUDIANTE · TRINITY COLLEGE DUBLIN', de: 'STUDENTIN · TRINITY COLLEGE DUBLIN' },
-    'STUDENT · IE UNIVERSITY': { es: 'ESTUDIANTE · IE UNIVERSITY', de: 'STUDENTIN · IE UNIVERSITY' },
-    'American AP diploma + Bachiller Colombiano': {
-      es: 'Diploma AP estadounidense + Bachiller Colombiano',
-      de: 'Amerikanisches AP-Diplom + Bachiller Colombiano',
+    'BOGOTA, COLOMBIA': { es: 'BOGOTÁ, COLOMBIA', de: 'BOGOTÁ, KOLUMBIEN' },
+    'DUBLIN, IRELAND': { es: 'DUBLÍN, IRLANDA', de: 'DUBLIN, IRLAND' },
+    'MADRID, SPAIN': { es: 'MADRID, ESPAÑA', de: 'MADRID, SPANIEN' },
+    'Colegio Nueva Granada, and the digital presence for Top Living Inmobiliaria': {
+      es: 'Colegio Nueva Granada, y la presencia digital de Top Living Inmobiliaria',
+      de: 'Colegio Nueva Granada, und die digitale Präsenz für Top Living Inmobiliaria',
     },
-    'Bachelor of Computer Science (transferred to IE University)': {
-      es: 'Grado en Ciencias de la Computación (traslado a IE University)',
-      de: 'Bachelor of Computer Science (Wechsel an die IE University)',
+    'Trinity College Dublin, first year of the degree': {
+      es: 'Trinity College Dublin, primer año del grado',
+      de: 'Trinity College Dublin, erstes Studienjahr',
     },
-    'Bachelor of Computer Science and Artificial Intelligence': {
+    'IE University, IEX Labs research and the Google Developer Group': {
+      es: 'IE University, investigación en IEX Labs y el Google Developer Group',
+      de: 'IE University, Forschung bei IEX Labs und die Google Developer Group',
+    },
+    '2010 to 2024': { es: '2010 a 2024', de: '2010 bis 2024' },
+    '2022 to 2023': { es: '2022 a 2023', de: '2022 bis 2023' },
+    '2023 to present': { es: '2023 a hoy', de: '2023 bis heute' },
+
+    /* the experience page: hero, then the three cv sections */
+    'studies, research and teams': { es: 'estudios, investigación y equipos', de: 'studium, forschung und teams' },
+    'class of 2028': { es: 'promoción de 2028', de: 'jahrgang 2028' },
+    'Computer Science and AI at IE University, with': {
+      es: 'Ciencias de la Computación e IA en IE University, con',
+      de: 'Informatik und KI an der IE University, mit',
+    },
+    'motion capture research and a developer community I help lead': {
+      es: 'investigación en captura de movimiento y una comunidad de desarrolladores que ayudo a dirigir',
+      de: 'Motion-Capture-Forschung und einer Entwickler-Community, die ich mit leite',
+    },
+    'Education, roles and the tools I work in, in one place.': {
+      es: 'Formación, puestos y las herramientas con las que trabajo, en un solo sitio.',
+      de: 'Ausbildung, Positionen und die Werkzeuge, mit denen ich arbeite, an einem Ort.',
+    },
+
+    'WORK': { es: 'TRABAJO', de: 'ARBEIT' },
+    'Research, developer community leadership and client work.': {
+      es: 'Investigación, liderazgo en comunidad de desarrolladores y trabajo con clientes.',
+      de: 'Forschung, Leitung einer Entwickler-Community und Kundenarbeit.',
+    },
+    'Technical Lead': { es: 'Líder técnica', de: 'Technical Lead' },
+    'Research Assistant': { es: 'Asistente de investigación', de: 'Forschungsassistentin' },
+    'Real Estate Agent': { es: 'Agente inmobiliaria', de: 'Immobilienmaklerin' },
+    'Sept 2025 to present': { es: 'sept 2025 a hoy', de: 'Sept 2025 bis heute' },
+    'Jan 2025 to present': { es: 'ene 2025 a hoy', de: 'Jan 2025 bis heute' },
+    'Apr 2021 to Apr 2024': { es: 'abr 2021 a abr 2024', de: 'Apr 2021 bis Apr 2024' },
+    'Madrid, Spain': { es: 'Madrid, España', de: 'Madrid, Spanien' },
+    'Bogota, Colombia': { es: 'Bogotá, Colombia', de: 'Bogotá, Kolumbien' },
+    'Dublin, Ireland': { es: 'Dublín, Irlanda', de: 'Dublin, Irland' },
+    'Led hands-on workshops on Git and GitHub, AI agent development and the Gemini CLI, upskilling student developers.': {
+      es: 'Impartí talleres prácticos sobre Git y GitHub, desarrollo de agentes de IA y Gemini CLI, formando a desarrolladores estudiantes.',
+      de: 'Praxis-Workshops zu Git und GitHub, KI-Agenten-Entwicklung und der Gemini CLI geleitet und studentische Entwickler weitergebildet.',
+    },
+    'Co-organised the Build with AI and Tech Roulette hackathons, running logistics and support throughout.': {
+      es: 'Coorganicé los hackathones Build with AI y Tech Roulette, encargándome de la logística y el soporte.',
+      de: 'Die Hackathons Build with AI und Tech Roulette mitorganisiert, samt Logistik und Betreuung.',
+    },
+    'Coordinated a female leadership panel with Women in Tech Madrid, and a session on VR applications in patient care.': {
+      es: 'Coordiné un panel de liderazgo femenino con Women in Tech Madrid y una sesión sobre aplicaciones de RV en la atención al paciente.',
+      de: 'Ein Panel zu weiblicher Führung mit Women in Tech Madrid koordiniert, dazu eine Session zu VR in der Patientenversorgung.',
+    },
+    "Set up and tested DJESTHESIA's tangible multimedia interface using TouchDesigner and OptiTrack motion capture.": {
+      es: 'Monté y probé la interfaz multimedia tangible de DJESTHESIA con TouchDesigner y captura de movimiento OptiTrack.',
+      de: "DJESTHESIAs greifbare Multimedia-Schnittstelle mit TouchDesigner und OptiTrack-Motion-Capture aufgebaut und getestet.",
+    },
+    'Ran the literature review for ROBOPRENEUR and worked on the final video prototype for its IEEE submission.': {
+      es: 'Realicé la revisión bibliográfica de ROBOPRENEUR y trabajé en el prototipo de vídeo final para su envío al IEEE.',
+      de: 'Die Literaturrecherche für ROBOPRENEUR durchgeführt und am finalen Video-Prototyp für die IEEE-Einreichung mitgearbeitet.',
+    },
+    'Started a motion capture and Blender animation pipeline, prototyping character work for a Unity based game.': {
+      es: 'Inicié un pipeline de captura de movimiento y animación en Blender, prototipando personajes para un juego en Unity.',
+      de: 'Eine Motion-Capture- und Blender-Animationspipeline aufgesetzt und Charakterarbeit für ein Unity-Spiel prototypisiert.',
+    },
+    "Built and maintained the brand's digital presence through social media, website design and digital marketing.": {
+      es: 'Construí y mantuve la presencia digital de la marca con redes sociales, diseño web y marketing digital.',
+      de: 'Die digitale Präsenz der Marke über Social Media, Webdesign und digitales Marketing aufgebaut und gepflegt.',
+    },
+    'Organised property documentation to support evaluation, giving the sales team faster decisions.': {
+      es: 'Organicé la documentación de inmuebles para apoyar su valoración, agilizando las decisiones del equipo de ventas.',
+      de: 'Immobilienunterlagen für die Bewertung aufbereitet und so schnellere Entscheidungen im Vertrieb ermöglicht.',
+    },
+
+    'EDUCATION': { es: 'FORMACIÓN', de: 'AUSBILDUNG' },
+    'Where the degree has been taken, and what it covered.': {
+      es: 'Dónde he cursado el grado, y qué ha incluido.',
+      de: 'Wo das Studium stattfand und was es umfasste.',
+    },
+    'BSc Computer Science and Artificial Intelligence': {
       es: 'Grado en Ciencias de la Computación e Inteligencia Artificial',
-      de: 'Bachelor of Computer Science and Artificial Intelligence',
+      de: 'BSc Computer Science and Artificial Intelligence',
     },
-    'Bogota, Colombia · 2010 to 2022': { es: 'Bogotá, Colombia · 2010 a 2022', de: 'Bogotá, Kolumbien · 2010 bis 2022' },
-    'Dublin, Ireland · 2022 to 2023': { es: 'Dublín, Irlanda · 2022 a 2023', de: 'Dublin, Irland · 2022 bis 2023' },
-    'Madrid, Spain · 2023 to present': { es: 'Madrid, España · 2023 a hoy', de: 'Madrid, Spanien · 2023 bis heute' },
+    'BSc Computer Science and Artificial Intelligence, year one': {
+      es: 'Grado en Ciencias de la Computación e Inteligencia Artificial, primer año',
+      de: 'BSc Computer Science and Artificial Intelligence, erstes Jahr',
+    },
+    'expected July 2028': { es: 'prevista julio de 2028', de: 'voraussichtlich Juli 2028' },
+    'Coursework: machine learning, computer vision, natural language processing, reinforcement learning, robotics, human-computer interaction.': {
+      es: 'Asignaturas: aprendizaje automático, visión por computador, procesamiento del lenguaje natural, aprendizaje por refuerzo, robótica, interacción persona-computador.',
+      de: 'Kurse: Machine Learning, Computer Vision, Verarbeitung natürlicher Sprache, Reinforcement Learning, Robotik, Mensch-Computer-Interaktion.',
+    },
+    'Awarded the High Potential Scholarship for academic excellence.': {
+      es: 'Becada con la High Potential Scholarship por excelencia académica.',
+      de: 'Mit dem High Potential Scholarship für akademische Leistungen ausgezeichnet.',
+    },
+    'Coursework: electrotechnology, mathematics (calculus, statistics, linear algebra), computers and society, digital logic design, computational theory.': {
+      es: 'Asignaturas: electrotecnia, matemáticas (cálculo, estadística, álgebra lineal), informática y sociedad, diseño lógico digital, teoría de la computación.',
+      de: 'Kurse: Elektrotechnik, Mathematik (Analysis, Statistik, lineare Algebra), Informatik und Gesellschaft, digitales Schaltungsdesign, Berechenbarkeitstheorie.',
+    },
+    'Transferred to IE University after the first year.': {
+      es: 'Traslado a IE University tras el primer año.',
+      de: 'Nach dem ersten Jahr an die IE University gewechselt.',
+    },
+
+    'TECHNICAL SKILLS': { es: 'COMPETENCIAS TÉCNICAS', de: 'TECHNISCHE KENNTNISSE' },
+    'What the work above was actually built with.': {
+      es: 'Con qué está construido realmente el trabajo de arriba.',
+      de: 'Womit die Arbeit oben tatsächlich gebaut wurde.',
+    },
+    'AI and machine learning': { es: 'IA y aprendizaje automático', de: 'KI und Machine Learning' },
+    'Languages': { es: 'Lenguajes', de: 'Sprachen' },
+    'Frameworks and databases': { es: 'Frameworks y bases de datos', de: 'Frameworks und Datenbanken' },
+    'Tools and platforms': { es: 'Herramientas y plataformas', de: 'Werkzeuge und Plattformen' },
   };
 
   const SKIP = new Set(['SCRIPT', 'STYLE', 'NOSCRIPT', 'CANVAS', 'SVG']);
