@@ -387,3 +387,31 @@ body .taxi-w.on-track .s.is-home-collabs h2, body .taxi-w.on-track .s.is-home-co
 .taxi-w.off-track .on-t-hero-stats-para-w { max-width: 64rem; }
 .taxi-w.off-track .off-t-hero-sub-para-w.grid-main,
 .taxi-w.off-track .off-t-hero-sub-para-mw { max-width: 52rem; }
+
+/* ---------------------------------------------------------------------------
+   Contact page. Same translucent card as the journey timeline and the CV
+   blocks, so the three pages read as one set.
+   --------------------------------------------------------------------------- */
+.s.am-contact { position: relative; padding: 3.5rem 0 2rem; }
+.am-contact-list { list-style: none; margin: 0; padding: 0;
+  display: flex; flex-direction: column; gap: 0.9rem; max-width: 58rem; }
+.am-contact-link { display: grid; grid-template-columns: minmax(0, 11rem) minmax(0, 1fr);
+  gap: 0.35rem 1.5rem; align-items: baseline; text-decoration: none;
+  border: 1px solid rgba(245,240,232,0.18); background: rgba(245,240,232,0.09);
+  backdrop-filter: blur(4px); border-radius: 14px; padding: 1rem 1.35rem;
+  transition: background 0.25s ease, border-color 0.25s ease; }
+a.am-contact-link:hover { background: rgba(245,240,232,0.14);
+  border-color: rgba(191,64,255,0.75); }
+.am-contact-label { color: #9c95b3; font-weight: 700; font-size: 0.78rem;
+  letter-spacing: 0.14em; text-transform: uppercase; }
+.am-contact-value { color: #f5f0e8; font-size: 1rem; word-break: break-word; }
+a.am-contact-link:hover .am-contact-value { color: #d9a8ff; }
+@media (max-width: 820px) { .am-contact-link { grid-template-columns: 1fr; } }
+
+/* CONTACT is seven characters, the length the template's hero was drawn for,
+   so it takes the original scale rather than the step-down EXPERIENCE needed */
+.taxi-w.is-contact .text-on-t-hero-heading { font-size: 13.5vw; }
+.taxi-w.is-contact .text-on-t-hero-heading-mona.margin { font-size: 14vw; }
+
+/* the orbiting earth closes the page, so it keeps its own room */
+.taxi-w.is-contact .s.am-earth-s { margin-top: -2rem; }

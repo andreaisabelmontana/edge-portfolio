@@ -208,7 +208,7 @@ var AM_LAND_RINGS = (window.__SITE_ROOT || '') + '/custom/land-rings.json';
     var scene = new THREE.Scene();
     var cam = new THREE.PerspectiveCamera(38, 2.5, 0.1, 100);
     var failed = false;
-    var tex = new THREE.TextureLoader().load('./custom/vendor/earth-atmos.jpg',
+    var tex = new THREE.TextureLoader().load((window.__SITE_ROOT || '') + '/custom/vendor/earth-atmos.jpg',
       null, undefined, function () { failed = true; vector(); });
     if (tex.colorSpace !== undefined && THREE.SRGBColorSpace) tex.colorSpace = THREE.SRGBColorSpace;
     var globe = new THREE.Mesh(new THREE.SphereGeometry(1.55, 96, 96),
