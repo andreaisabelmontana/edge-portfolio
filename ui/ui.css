@@ -392,13 +392,13 @@ body.edge-ready .panels-wrap > .s.home-marquee .c.is-marquee {
 /* the cards sit over it */
 body.edge-ready .panels { position: relative; z-index: 2; }
 
-/* ---- gallery button removed from the bar ----
+/* ---- gallery removed site wide ----
 
-   it is her Arte de la Montaña link, and beside the language switcher it was
-   overlapping. targeted by its href rather than its classes, because
-   .btn-layout.is-nav also wraps the hamburger. */
-.nav a.btn-w[href*="Arte-De-La-Montana"],
-.nav a[href*="Arte-De-La-Montana"] {
+   every link to Arte de la Montaña goes: the bar, the menu and the footer. it
+   is targeted by href rather than class, because .btn-layout.is-nav also wraps
+   the hamburger and hiding that would take the menu with it. */
+a[href*="Arte-De-La-Montana"],
+a[href*="arte-de-la-montana"] {
   display: none !important;
 }
 
