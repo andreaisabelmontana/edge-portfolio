@@ -189,9 +189,29 @@
      renaming the source text means the split runs on the new word and binds to
      it natively, and every link animates. */
 
+  /* her scrolling marquee lives inside the hero, which we turned into a fixed
+     backdrop, so it was stranded in a band above the cards and could never line
+     up with them. moving it into the cards section puts it in the same flow, so
+     it scrolls with them and passes behind. */
+  function marqueeBehindCards() {
+    const marquee = document.querySelector('.s.home-marquee');
+    const wrap = document.querySelector('.panels-wrap');
+    if (marquee && wrap && !wrap.contains(marquee)) {
+      wrap.insertBefore(marquee, wrap.firstChild);
+    }
+  }
+
+  /* the experience card points at #journey, so her section needs that id */
+  function tagJourney() {
+    const j = document.querySelector('.s.am-exp');
+    if (j && !j.id) j.id = 'journey';
+  }
+
   function restructure() {
     document.body.classList.add('edge-ready');
     adoptNav();
+    marqueeBehindCards();
+    tagJourney();
     frameHead();
     armPointerCorrection();
     /* her scroll-triggered animations cache their start positions at init, and

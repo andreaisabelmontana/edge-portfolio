@@ -529,3 +529,51 @@ body.edge-ready .otot-btn,
 .nav .lang button {
   font-family: "Mona Sans Variable", Arial, sans-serif !important;
 }
+
+/* ---- hover sweep on the cards ----
+
+   her data-anim-high fires once on scroll into view, so by the time you hover
+   it has already played. this is the same wipe bound to hover instead: the bar
+   grows from the left, then leaves to the right, so it reads as passing through
+   the word rather than covering it. */
+@keyframes edge-sweep {
+  0%    { transform: scaleX(0); transform-origin: left center; }
+  48%   { transform: scaleX(1); transform-origin: left center; }
+  52%   { transform: scaleX(1); transform-origin: right center; }
+  100%  { transform: scaleX(0); transform-origin: right center; }
+}
+
+.otot-card .text-impact-reg-brier,
+.otot-card .text-body-reg-mona {
+  position: relative;
+  display: inline-block;
+}
+
+.otot-card .text-impact-reg-brier::after,
+.otot-card .text-body-reg-mona::after {
+  content: "";
+  position: absolute;
+  inset: -0.08em -0.15em;
+  z-index: 5;
+  transform: scaleX(0);
+  transform-origin: left center;
+  pointer-events: none;
+}
+
+/* the title takes her purple, the body copy her off-white, matching the
+   colours the scroll version uses on each */
+.otot-card .text-impact-reg-brier::after { background: #bc13fe; }
+.otot-card .text-body-reg-mona::after { background: #f4f4ed; }
+
+.otot-card:hover .text-impact-reg-brier::after {
+  animation: edge-sweep 0.62s cubic-bezier(0.65, 0.05, 0, 1) forwards;
+}
+
+.otot-card:hover .text-body-reg-mona::after {
+  animation: edge-sweep 0.62s cubic-bezier(0.65, 0.05, 0, 1) 0.08s forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .otot-card:hover .text-impact-reg-brier::after,
+  .otot-card:hover .text-body-reg-mona::after { animation: none; }
+}

@@ -15,7 +15,7 @@ body.edge-ready {
    stay in the dom because the bundle reads them; they are only taken out of
    view. */
 body.edge-ready .transition-w,
-body.edge-ready .s:not(.home-hero):not(.is-footer),
+body.edge-ready .s:not(.home-hero):not(.is-footer):not(.home-marquee):not(.am-exp),
 body.edge-ready .home-title-w,
 /* her scroll tracks are divs, not sections, so the rule above walked straight
    past them. is-home-otot alone was 1470px of empty starfield under the cards. */
@@ -194,6 +194,16 @@ body.edge-ready .hero-inner { position: relative; z-index: 1; }
    and with the cursor true. our copy takes the left column and the panel below
    just reserves the space it must not run into. */
 
+/* her JOURNEY section: the education timeline and the globe. it is real
+   experience content, so it stays on the page and the second card points at it
+   rather than at a route that does not exist. */
+body.edge-ready .s.am-exp {
+  display: block !important;
+  position: relative;
+  z-index: 3;
+  scroll-margin-top: 96px;
+}
+
 /* the clip layer stays untransformed, so its coordinate space is screen space
    and the clip is written straight from the panel's rect. */
 .gl-clip {
@@ -345,3 +355,39 @@ body.edge-ready {
 body.edge-ready .footer-layout-clip {
   background-color: #1c1c20 !important;
 }
+
+/* ---- the scrolling marquee, behind the cards ----
+
+   ui.js moves .s.home-marquee out of the fixed hero and into .panels-wrap, so
+   it shares the cards' flow instead of being stranded in a band above them. it
+   is exempted from the rule that hides her other sections, laid over the full
+   card band, and held below them. */
+body.edge-ready .panels-wrap { position: relative; }
+
+body.edge-ready .panels-wrap > .s.home-marquee {
+  display: flex !important;
+  position: absolute !important;
+  top: 50% !important;
+  /* full bleed, not the container width: held to the container the cards
+     covered it completely, which is behind them but invisible. running it edge
+     to edge lets it read either side of the cards and through the gap between
+     them, so you can see it passing behind. */
+  left: 50% !important;
+  right: auto !important;
+  width: 100vw !important;
+  height: auto !important;
+  min-height: 0 !important;
+  transform: translate(-50%, -50%) !important;
+  z-index: 0 !important;
+  opacity: 0.65;
+  pointer-events: none;
+}
+
+body.edge-ready .panels-wrap > .s.home-marquee .c.is-marquee {
+  width: 100% !important;
+  max-width: none !important;
+  padding: 0 !important;
+}
+
+/* the cards sit over it */
+body.edge-ready .panels { position: relative; z-index: 2; }
