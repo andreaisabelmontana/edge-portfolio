@@ -69,7 +69,11 @@
           <img class="otot-card-img" src="custom/on-vr.webp" alt="" loading="lazy">
         </a>
 
-        <a class="otot-card" data-taxi-ignore href="#journey" data-reveal="90">
+        <!-- the journey lives on the offline page now. this used to point at
+             #journey on this page, which sits inside the sticky track ui.css
+             hides to kill the dead space under these cards, so the card had
+             nowhere to go. -->
+        <a class="otot-card" data-taxi-ignore href="./off-track#journey" data-reveal="90">
           <div class="otot-card-text">
             <h2 class="text-impact-reg-brier">EXPERIENCE</h2>
             <p class="text-body-reg-mona" data-i18n="panel.about.desc">Bogota to Dublin to Madrid. Degree, competition wins and where the work has taken me.</p>

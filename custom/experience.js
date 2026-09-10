@@ -1,7 +1,13 @@
 /* Experience globe: canvas orthographic Earth with milestone pins and a
-   timeline list. Land outlines come from Natural Earth 110m (same source
-   Javier's globe uses), pre-decoded into custom/land-rings.json.
-   Edit ENTRIES to change the journey. */
+   timeline list. Land outlines come from Natural Earth 110m, pre-decoded into
+   custom/land-rings.json. Edit ENTRIES to change the journey. */
+
+/* the coastline data was fetched as './custom/land-rings.json', which only
+   resolves from the site root. this section now also runs on /off-track/, where
+   that path looks for the file inside the subfolder and the globe comes up
+   empty, so it is resolved against the root the pages already publish. */
+var AM_LAND_RINGS = (window.__SITE_ROOT || '') + '/custom/land-rings.json';
+
 (function () {
   var ENTRIES = [
     { year: '2010 to 2022', title: 'Student', org: 'Colegio Nueva Granada',
@@ -23,7 +29,7 @@
   var rotLon = 20, rotLat = -18, targetLon = null, targetLat = null;
   var auto = true, dragging = false, lastX = 0, lastY = 0, active = -1;
 
-  fetch('./custom/land-rings.json').then(function (r) { return r.json(); })
+  fetch(AM_LAND_RINGS).then(function (r) { return r.json(); })
     .then(function (d) { RINGS = d; });
 
   function proj(lat, lon, lift) {
@@ -159,7 +165,7 @@
   function vector() {
     var x = c.getContext('2d');
     var rot = 0, R2 = null;
-    fetch('./custom/land-rings.json').then(function (r) { return r.json(); })
+    fetch(AM_LAND_RINGS).then(function (r) { return r.json(); })
       .then(function (d) { R2 = d; });
     function pr(lat, lon, cx, cy, R) {
       var la = lat * Math.PI / 180, lo = (lon + rot) * Math.PI / 180;
