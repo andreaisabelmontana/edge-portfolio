@@ -532,10 +532,15 @@ body.edge-ready .otot-btn,
 
 /* ---- hover sweep on the cards ----
 
-   her data-anim-high fires once on scroll into view, so by the time you hover
-   it has already played. this is the same wipe bound to hover instead: the bar
-   grows from the left, then leaves to the right, so it reads as passing through
-   the word rather than covering it. */
+   ours, not hers, and deliberately so. data-anim-high covers the text with a
+   coloured bar and uncovers it when its scroll trigger fires. those triggers
+   cache their positions at init, and this page changes height well after that,
+   so they stopped firing and left the cards as solid lilac blocks with the copy
+   buried underneath.
+
+   this is pure css bound to hover. it starts at scaleX(0), so if it never runs
+   nothing is hidden: the failure mode is a missing animation rather than
+   unreadable content. */
 @keyframes edge-sweep {
   0%    { transform: scaleX(0); transform-origin: left center; }
   48%   { transform: scaleX(1); transform-origin: left center; }
