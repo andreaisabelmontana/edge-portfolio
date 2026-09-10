@@ -77,6 +77,8 @@
     'ABOUT': { es: 'SOBRE MÍ', de: 'ÜBER MICH' },
     'EXPERIENCE': { es: 'EXPERIENCIA', de: 'ERFAHRUNG' },
     'About': { es: 'Sobre mí', de: 'Über mich' },
+    'Home': { es: 'Inicio', de: 'Start' },
+    'Experience': { es: 'Experiencia', de: 'Erfahrung' },
     'Online': { es: 'En línea', de: 'Online' },
     'Offline': { es: 'Fuera de línea', de: 'Offline' },
     'Calendar': { es: 'Calendario', de: 'Kalender' },
@@ -94,9 +96,65 @@
     'This is a vertical drive.': { es: 'Esta experiencia es vertical.', de: 'Das ist eine vertikale Fahrt.' },
     'Project portfolio of code and research.': { es: 'Portafolio de proyectos de código e investigación.', de: 'Portfolio aus Code und Forschung.' },
     'My personal life away from the screen.': { es: 'Mi vida personal lejos de la pantalla.', de: 'Mein Leben abseits des Bildschirms.' },
+
+    /* the hall of ideas */
+    'Hall of Ideas': { es: 'Salón de Ideas', de: 'Halle der Ideen' },
+    'Every project here ships with a live demo and its source, not a screenshot. Filter by what one is made of, or what it was built for.': {
+      es: 'Cada proyecto aquí viene con una demo en vivo y su código, no con una captura. Filtra por aquello de lo que está hecho, o por aquello para lo que fue construido.',
+      de: 'Jedes Projekt hier kommt mit einer Live-Demo und seinem Quellcode, nicht mit einem Screenshot. Filtere danach, woraus es gebaut ist oder wofür es gebaut wurde.',
+    },
+
+    /* the filter row. these match on the visible label only: every pill keeps
+       its english data-value, which is what the filter compares against, so
+       translating the face of a pill cannot change what it selects. */
+    'TYPE': { es: 'TIPO', de: 'ART' },
+    'DOMAIN': { es: 'ÁMBITO', de: 'BEREICH' },
+    'YEAR': { es: 'AÑO', de: 'JAHR' },
+    'All': { es: 'Todo', de: 'Alle' },
+    'Coursework': { es: 'Académico', de: 'Studium' },
+    'Personal': { es: 'Personal', de: 'Privat' },
+    'AI & ML': { es: 'IA y ML', de: 'KI & ML' },
+    'Algorithms': { es: 'Algoritmos', de: 'Algorithmen' },
+    'Cloud & DevOps': { es: 'Cloud y DevOps', de: 'Cloud & DevOps' },
+    'Computer Vision': { es: 'Visión por computador', de: 'Computer Vision' },
+    'Games': { es: 'Videojuegos', de: 'Spiele' },
+    'Real-time 3D': { es: '3D en tiempo real', de: 'Echtzeit-3D' },
+    'UI & UX': { es: 'UI y UX', de: 'UI & UX' },
+    'Motion capture': { es: 'Captura de movimiento', de: 'Motion Capture' },
+
+    /* the journey section. the timeline entries are built by experience.js
+       after this script has already run, which is exactly the case the
+       observer at the bottom of this file exists for: they are translated when
+       they appear rather than on a guess about when that will be. */
+    'JOURNEY': { es: 'TRAYECTORIA', de: 'WERDEGANG' },
+    'My experience log: studies and work, mapped where they happened.': {
+      es: 'Mi registro de experiencia: estudios y trabajo, situados donde ocurrieron.',
+      de: 'Mein Erfahrungsprotokoll: Studium und Arbeit, verortet wo sie stattfanden.',
+    },
+    'STUDENT · COLEGIO NUEVA GRANADA': { es: 'ESTUDIANTE · COLEGIO NUEVA GRANADA', de: 'STUDENTIN · COLEGIO NUEVA GRANADA' },
+    'STUDENT · TRINITY COLLEGE DUBLIN': { es: 'ESTUDIANTE · TRINITY COLLEGE DUBLIN', de: 'STUDENTIN · TRINITY COLLEGE DUBLIN' },
+    'STUDENT · IE UNIVERSITY': { es: 'ESTUDIANTE · IE UNIVERSITY', de: 'STUDENTIN · IE UNIVERSITY' },
+    'American AP diploma + Bachiller Colombiano': {
+      es: 'Diploma AP estadounidense + Bachiller Colombiano',
+      de: 'Amerikanisches AP-Diplom + Bachiller Colombiano',
+    },
+    'Bachelor of Computer Science (transferred to IE University)': {
+      es: 'Grado en Ciencias de la Computación (traslado a IE University)',
+      de: 'Bachelor of Computer Science (Wechsel an die IE University)',
+    },
+    'Bachelor of Computer Science and Artificial Intelligence': {
+      es: 'Grado en Ciencias de la Computación e Inteligencia Artificial',
+      de: 'Bachelor of Computer Science and Artificial Intelligence',
+    },
+    'Bogota, Colombia · 2010 to 2022': { es: 'Bogotá, Colombia · 2010 a 2022', de: 'Bogotá, Kolumbien · 2010 bis 2022' },
+    'Dublin, Ireland · 2022 to 2023': { es: 'Dublín, Irlanda · 2022 a 2023', de: 'Dublin, Irland · 2022 bis 2023' },
+    'Madrid, Spain · 2023 to present': { es: 'Madrid, España · 2023 a hoy', de: 'Madrid, Spanien · 2023 bis heute' },
   };
 
   const SKIP = new Set(['SCRIPT', 'STYLE', 'NOSCRIPT', 'CANVAS', 'SVG']);
+
+  // set up at the bottom, but apply() clears its queue, and apply() runs first
+  let watcher = null;
 
   const nodes = [...document.querySelectorAll('[data-i18n]')];
   const EN = {};
@@ -119,6 +177,18 @@
     Object.values(PHRASES[en]).forEach((variant) => CANON.set(variant, en));
   });
 
+  /* the same map again, with every space removed.
+
+     her line splitter cuts a paragraph into one span per rendered line, so a
+     sentence stops being one text node and no node-level match can ever see it
+     whole. the pieces do still concatenate back to the sentence, but not
+     reliably with the spaces intact, so comparing on squeezed text is what
+     makes a split paragraph findable again. */
+  const tight = (s) => (s || '').replace(/\s+/g, '').toLowerCase();
+
+  const CANON_TIGHT = new Map();
+  CANON.forEach((en, variant) => CANON_TIGHT.set(tight(variant), en));
+
   function translateNodes(lang) {
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
       acceptNode(n) {
@@ -138,6 +208,34 @@
       if (!key) return;
       const target = lang === 'en' ? key : (PHRASES[key][lang] || key);
       if (target !== current) node.nodeValue = node.nodeValue.replace(current, target);
+    });
+  }
+
+  /* whole paragraphs, for the ones the splitter has already taken apart.
+
+     only split-text="lines" is touched. that is body copy, and rewriting it
+     costs nothing but the line spans, which are re-revealed as plain visible
+     text. split-text="chars" is deliberately left alone: those are the nav
+     labels and buttons whose hover animation is bound to the individual char
+     spans, and flattening them would kill it.
+
+     none of this runs on a first load in another language anyway. this script
+     goes before her splitter, so the paragraph is still one text node when it
+     is translated and the split then happens on the translated words with the
+     animation fully intact. this is the path for switching language later, on
+     a page that has already been split. */
+  function translateBlocks(lang) {
+    document.querySelectorAll('[split-text="lines"]').forEach((el) => {
+      if (el.closest('[data-i18n]')) return;
+
+      // the splitter copies the pre-split wording into aria-label, which is a
+      // cleaner source than reassembled spans
+      const key = CANON_TIGHT.get(tight(el.getAttribute('aria-label') || el.textContent));
+      if (!key) return;
+
+      const target = lang === 'en' ? key : (PHRASES[key][lang] || key);
+      if (tight(el.textContent) === tight(target)) return;
+      el.textContent = target;
     });
   }
 
@@ -170,6 +268,7 @@
     });
 
     translateNodes(lang);
+    translateBlocks(lang);
 
     document.documentElement.lang = lang;
     document.querySelectorAll('[data-lang]').forEach((b) => {
@@ -178,6 +277,15 @@
       b.setAttribute('aria-pressed', String(on));
     });
     try { localStorage.setItem(STORE, lang); } catch (e) {}
+
+    /* anything that renders its own words rather than carrying them in the
+       markup, like the project count on the hall of ideas, cannot be reached by
+       either pass. this tells those scripts to redraw themselves. */
+    document.dispatchEvent(new CustomEvent('edge:lang', { detail: lang }));
+
+    // discard the mutations this pass just made, so the observer below does not
+    // read our own writing as a change and call us straight back
+    if (watcher) watcher.takeRecords();
   }
 
   function current() {
@@ -226,7 +334,23 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
   else boot();
 
-  // her bundle rewrites headings into per-line spans after load, so re-apply
-  // once things have settled or those lines come back in english
-  window.addEventListener('load', () => setTimeout(boot, 1200));
+  /* re-translate whatever her bundle rebuilds.
+
+     this used to be two fixed timeouts, on the guess that everything would have
+     settled by then. it does not: the splitter, the menu overlay and the filter
+     row each rewrite their part of the page on their own schedule, and anything
+     landing after the last timeout simply stayed in english.
+
+     watching for the rebuild instead of predicting when it happens covers all
+     of them, including anything added later. only structure and text are
+     watched, not attributes, so gsap writing inline styles every frame does not
+     reach this. apply() changes nothing when the page already reads correctly,
+     and clears its own mutations on the way out, so a redundant pass is free and
+     cannot feed itself. */
+  let pass = 0;
+  watcher = new MutationObserver(() => {
+    clearTimeout(pass);
+    pass = setTimeout(() => apply(current()), 250);
+  });
+  watcher.observe(document.body, { childList: true, subtree: true, characterData: true });
 })();

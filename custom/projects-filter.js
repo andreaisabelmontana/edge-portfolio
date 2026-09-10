@@ -13,6 +13,16 @@
   if (window.__edgeFilter) return;
   window.__edgeFilter = true;
 
+  /* the count is the one string on this page that is written rather than
+     marked up, so the translator cannot find it in the dom. it is rebuilt here
+     on every language change instead, and again after each filter click, which
+     is the other moment it changes. */
+  var COUNT = {
+    en: function (n) { return n + (n === 1 ? ' project' : ' projects'); },
+    es: function (n) { return n + (n === 1 ? ' proyecto' : ' proyectos'); },
+    de: function (n) { return n + (n === 1 ? ' Projekt' : ' Projekte'); },
+  };
+
   var GROUPS = [
     { key: 'type', label: 'TYPE', from: function (p) { return p.track ? [p.track] : []; } },
     { key: 'domain', label: 'DOMAIN', from: function (p) { return p.categories || []; } },
@@ -98,16 +108,26 @@
       });
     }
 
+    var shown = 0;
+
+    function renderCount() {
+      var say = COUNT[document.documentElement.lang] || COUNT.en;
+      var text = say(shown);
+      if (count.textContent !== text) count.textContent = text;
+    }
+
     function apply() {
-      var shown = 0;
+      shown = 0;
       cards.forEach(function (card) {
         var p = bySlug[card.getAttribute('data-slug')];
         var on = p ? matches(p) : true;
         card.classList.toggle('edge-hidden', !on);
         if (on) shown++;
       });
-      count.textContent = shown + (shown === 1 ? ' project' : ' projects');
+      renderCount();
     }
+
+    document.addEventListener('edge:lang', renderCount);
 
     list.parentNode.insertBefore(bar, list);
     apply();
