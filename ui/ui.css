@@ -409,3 +409,16 @@ a[href*="arte-de-la-montana"] {
   position: relative;
   z-index: 3;
 }
+
+/* ---- projects page: close the gap under the helmet ----
+
+   the helmet scene reserves a full viewport and the title block started only
+   after it, leaving a long empty drop between them. pulling the block up sits
+   PROJECTS under the helmet instead of a screen below it. */
+.s.home-helmets {
+  margin-top: -22vh !important;
+}
+
+@media (max-width: 1023px) {
+  .s.home-helmets { margin-top: -8vh !important; }
+}
