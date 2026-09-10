@@ -109,7 +109,9 @@ html[data-wf-page="67b5a02dc5d338960b17a7eb"] section.s:has(.c.is-callout) { dis
 .taxi-w.off-track .off-t-hero-img, .taxi-w.off-track .hero-img-layer { display: none !important; } /* the JS photo-flip widget paints layers over the heading */
 .taxi-w.off-track .off-t-hero-sub-para-w { margin-top: -3.5rem; } /* pull the paragraph up to its heading */
 .taxi-w.off-track .off-t-hero-sub-para-mw { grid-area: 1 / 1 / 2 / 2 !important; max-width: 26rem; } /* align under the heading instead of dangling mid-page */
-.taxi-w.off-track .s.is-on-track-home { height: 88vh !important; min-height: 0 !important; } /* trim the hero band */
+.taxi-w.off-track .s.is-on-track-home { height: auto !important; min-height: 0 !important; }
+/* was 88vh, which was right when a photo marquee filled the band. With the
+   photos gone it held ~220px of empty starfield above JOURNEY. */
 .taxi-w.off-track .text-impact-lg-mona strong, .taxi-w.off-track .text-impact-lg-mona strong .char { color: #BC13FE !important; }
 .taxi-w.off-track .high-line-reveal { display: none !important; } /* the stuck purple wipe bars */
 /* footer logo marquee: wordmark SVGs are #BC13FE directly — no filter, exact brand purple */
@@ -126,12 +128,15 @@ html[data-wf-page="67b5a02dc5d338960b17a7eb"] section.s:has(.c.is-callout) { dis
 .callout-rive-w { background: url(astronaut.png) center / contain no-repeat !important; }
 .base-helmet-rive canvas, .base-helmet-rive svg { visibility: hidden !important; }
 .base-helmet-rive { background: url(astronaut.png) center / contain no-repeat !important; }
-/* off-track hero: intro copy centered directly under the OFFLINE title */
-.taxi-w.off-track .off-t-hero-stats-grid.grid-main { display: block; max-width: 42rem; margin: 2.5rem auto 0; text-align: center; }
+/* off-track hero: intro copy in a left-aligned column under the EXPERIENCE
+   title. It was centred under a full-bleed title, which left it floating in
+   the middle of the page with its own description indented into a different
+   column again. Sharing a left edge with the title reads as one block. */
+.taxi-w.off-track .off-t-hero-stats-grid.grid-main { display: block; max-width: 42rem; margin: 2.5rem 0 0; text-align: left; }
 .taxi-w.off-track .off-t-hero-stats-layout { display: block; }
-.taxi-w.off-track .off-t-hero-stats-layout .eyebrow-w { justify-content: center; }
-.taxi-w.off-track .off-t-hero-sub-para-w.grid-main { display: block; max-width: 34rem; margin: 1.25rem auto 0; text-align: center; }
-.taxi-w.off-track .off-t-hero-sub-para-mw { max-width: 34rem; margin: 0 auto; }
+.taxi-w.off-track .off-t-hero-stats-layout .eyebrow-w { justify-content: flex-start; }
+.taxi-w.off-track .off-t-hero-sub-para-w.grid-main { display: block; max-width: 34rem; margin: 1.25rem 0 0; text-align: left; }
+.taxi-w.off-track .off-t-hero-sub-para-mw { max-width: 34rem; margin: 0; }
 /* off-track track: show the Madrid winter-walks photo uncropped; contain beats the frame's fixed height */
 .taxi-w.off-track .horizontal-item-img-w.is-offt6 img[src*="hb-madrid"] { object-fit: contain; object-position: center; }
 /* home: trim the hero track's empty scroll runway - the pinned scene only fills the top, the rest was dead starfield before ON/OFFLINE arrives */
@@ -343,5 +348,42 @@ body .taxi-w.on-track .s.is-home-collabs h2, body .taxi-w.on-track .s.is-home-co
    straight off the viewport fits the word at every width instead, and the two
    spans keep the 1.04 ratio between them that gives the two-tone split its
    proportions. */
-.taxi-w.off-track .text-on-t-hero-heading { font-size: 16vw; }
-.taxi-w.off-track .text-on-t-hero-heading-mona.margin { font-size: 16.65vw; }
+.taxi-w.off-track .text-on-t-hero-heading { font-size: 9.6vw; }
+.taxi-w.off-track .text-on-t-hero-heading-mona.margin { font-size: 10vw; }
+
+/* Experience hero layout.
+
+   The template built this hero around a photo marquee and an image slot. With
+   both gone the grid still reserved their height, leaving ~230px of empty
+   starfield above JOURNEY, and the copy stayed in a centred 640px column that
+   floated under a full-bleed title with the description indented into a
+   different column again.
+
+   It is one left-aligned column now, sharing its left edge with the title, and
+   every fixed height is released so the section ends where the words do. */
+.taxi-w.off-track .c.is-on-track-home { height: auto; min-height: 0; padding-bottom: 4rem; }
+.taxi-w.off-track .off-t-hero-title-layout { height: auto; padding-bottom: 0; }
+
+.taxi-w.off-track .off-t-hero-stats-w { display: block; width: 100%; height: auto; }
+
+/* the template's signature flourish is not hers, and with the photos gone it
+   was the only thing left between the heading and its own description */
+.taxi-w.off-track .off-track-hero-signature-rive { display: none !important; }
+
+
+/* The hero read as one enormous word and then a thin purple serif over a
+   starfield, which is the least legible thing on the site. A recruiter's first
+   screen should answer where she studies, what she is doing now and whether
+   she is available, so the lead is three short facts at one readable weight and
+   the two organisations are the only colour in it. */
+.taxi-w.off-track .am-accent { color: #d9a8ff; font-family: inherit; }
+
+/* the leftover template stat sat in near-black over the starfield and read as a
+   smudge; the graduating year is in the eyebrow now */
+.taxi-w.off-track .off-t-hero-info-grid { display: none !important; }
+
+/* the lead needs room to break on its own sentences rather than mid-clause */
+.taxi-w.off-track .off-t-hero-stats-grid.grid-main { max-width: 64rem; }
+.taxi-w.off-track .on-t-hero-stats-para-w { max-width: 64rem; }
+.taxi-w.off-track .off-t-hero-sub-para-w.grid-main,
+.taxi-w.off-track .off-t-hero-sub-para-mw { max-width: 52rem; }

@@ -151,19 +151,19 @@
     '2023 to present': { es: '2023 a hoy', de: '2023 bis heute' },
 
     /* the experience page: hero, then the three cv sections */
-    'studies, research and teams': { es: 'estudios, investigación y equipos', de: 'studium, forschung und teams' },
-    'class of 2028': { es: 'promoción de 2028', de: 'jahrgang 2028' },
-    'Computer Science and AI at IE University, with': {
-      es: 'Ciencias de la Computación e IA en IE University, con',
-      de: 'Informatik und KI an der IE University, mit',
+    'Madrid, Spain · graduating 2028': {
+      es: 'Madrid, España · graduación 2028',
+      de: 'Madrid, Spanien · Abschluss 2028',
     },
-    'motion capture research and a developer community I help lead': {
-      es: 'investigación en captura de movimiento y una comunidad de desarrolladores que ayudo a dirigir',
-      de: 'Motion-Capture-Forschung und einer Entwickler-Community, die ich mit leite',
+    'Research assistant at': { es: 'Asistente de investigación en', de: 'Forschungsassistentin bei' },
+    'Technical lead of the': { es: 'Líder técnica del', de: 'Technical Lead der' },
+    'BSc Computer Science and AI at IE University.': {
+      es: 'Grado en Ciencias de la Computación e IA en IE University.',
+      de: 'BSc Computer Science and AI an der IE University.',
     },
-    'Education, roles and the tools I work in, in one place.': {
-      es: 'Formación, puestos y las herramientas con las que trabajo, en un solo sitio.',
-      de: 'Ausbildung, Positionen und die Werkzeuge, mit denen ich arbeite, an einem Ort.',
+    'Open to internships and roles for fall 2026 and summer 2027.': {
+      es: 'Disponible para prácticas y empleo en otoño de 2026 y verano de 2027.',
+      de: 'Offen für Praktika und Stellen im Herbst 2026 und Sommer 2027.',
     },
 
     'WORK': { es: 'TRABAJO', de: 'ARBEIT' },
