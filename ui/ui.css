@@ -416,9 +416,19 @@ a[href*="arte-de-la-montana"] {
    after it, leaving a long empty drop between them. pulling the block up sits
    PROJECTS under the helmet instead of a screen below it. */
 .s.home-helmets {
-  margin-top: -22vh !important;
+  margin-top: -14vh !important;
+  /* the section paints its own ground, and once it overlaps the helmet that
+     ground cut the bottom of the helmet off. transparent here so the scene
+     shows through and only the type sits on top of it. */
+  background: transparent !important;
+  position: relative;
+  z-index: 2;
+}
+
+.s.home-helmets .c.home-helmets {
+  background: transparent !important;
 }
 
 @media (max-width: 1023px) {
-  .s.home-helmets { margin-top: -8vh !important; }
+  .s.home-helmets { margin-top: -6vh !important; }
 }
