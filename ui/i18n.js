@@ -72,6 +72,9 @@
      absent: LinkedIn, Instagram, Youtube, GitHub and GALLERY stay as they are
      in every language. */
   const PHRASES = {
+    'Everything here runs, and the source is open for all of it. Filter by what a project is made of, or start with Battleship: a probability-density AI in C, with a browser port verified to match the engine move for move.': {
+      es: 'Todo lo que hay aquí funciona, y el código está abierto. Filtra por lo que compone cada proyecto, o empieza por Battleship: una IA de densidad de probabilidad en C, con un port al navegador verificado para coincidir jugada a jugada con el motor.',
+      de: 'Alles hier läuft, und der Quellcode ist offen. Filtere danach, woraus ein Projekt besteht, oder beginne mit Battleship: eine Wahrscheinlichkeitsdichte-KI in C, mit einem Browser-Port, der Zug für Zug mit der Engine übereinstimmt.' },
     'Home': { es: 'Inicio', de: 'Startseite' },
     'Projects': { es: 'Proyectos', de: 'Projekte' },
     'PROJECTS': { es: 'PROYECTOS', de: 'PROJEKTE' },
